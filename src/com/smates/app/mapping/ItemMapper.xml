@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smates.app.dao.ItemMapper">
+  <resultMap id="BaseResultMap" type="com.smates.app.pojo.Item">
+    <id column="item_id" jdbcType="CHAR" property="itemId" />
+    <result column="item_name" jdbcType="CHAR" property="itemName" />
+    <result column="item_price" jdbcType="DOUBLE" property="itemPrice" />
+    <result column="order_id" jdbcType="CHAR" property="orderId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_id, item_name, item_price, order_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.smates.app.pojo.Item">
+    insert into a_item (item_id, item_name, item_price, 
+      order_id)
+    values (#{itemId,jdbcType=CHAR}, #{itemName,jdbcType=CHAR}, #{itemPrice,jdbcType=DOUBLE}, 
+      #{orderId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smates.app.pojo.Item">
+    insert into a_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="itemPrice != null">
+        item_price,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=CHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    <set>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        item_price = #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=CHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    set item_name = #{itemName,jdbcType=CHAR},
+      item_price = #{itemPrice,jdbcType=DOUBLE},
+      order_id = #{orderId,jdbcType=CHAR}
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.smates.app.pojo.Item">
+    <id column="item_id" jdbcType="CHAR" property="itemId" />
+    <result column="item_name" jdbcType="CHAR" property="itemName" />
+    <result column="item_price" jdbcType="DOUBLE" property="itemPrice" />
+    <result column="order_id" jdbcType="CHAR" property="orderId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_id, item_name, item_price, order_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.smates.app.pojo.Item">
+    insert into a_item (item_id, item_name, item_price, 
+      order_id)
+    values (#{itemId,jdbcType=CHAR}, #{itemName,jdbcType=CHAR}, #{itemPrice,jdbcType=DOUBLE}, 
+      #{orderId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smates.app.pojo.Item">
+    insert into a_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="itemPrice != null">
+        item_price,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=CHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    <set>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        item_price = #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=CHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    set item_name = #{itemName,jdbcType=CHAR},
+      item_price = #{itemPrice,jdbcType=DOUBLE},
+      order_id = #{orderId,jdbcType=CHAR}
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.smates.app.pojo.Item">
+    <id column="item_id" jdbcType="CHAR" property="itemId" />
+    <result column="item_name" jdbcType="CHAR" property="itemName" />
+    <result column="item_price" jdbcType="DOUBLE" property="itemPrice" />
+    <result column="order_id" jdbcType="CHAR" property="orderId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_id, item_name, item_price, order_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.smates.app.pojo.Item">
+    insert into a_item (item_id, item_name, item_price, 
+      order_id)
+    values (#{itemId,jdbcType=CHAR}, #{itemName,jdbcType=CHAR}, #{itemPrice,jdbcType=DOUBLE}, 
+      #{orderId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smates.app.pojo.Item">
+    insert into a_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="itemPrice != null">
+        item_price,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=CHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    <set>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        item_price = #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=CHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    set item_name = #{itemName,jdbcType=CHAR},
+      item_price = #{itemPrice,jdbcType=DOUBLE},
+      order_id = #{orderId,jdbcType=CHAR}
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.smates.app.pojo.Item">
+    <id column="item_id" jdbcType="CHAR" property="itemId" />
+    <result column="item_name" jdbcType="CHAR" property="itemName" />
+    <result column="item_price" jdbcType="DOUBLE" property="itemPrice" />
+    <result column="order_id" jdbcType="CHAR" property="orderId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_id, item_name, item_price, order_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.smates.app.pojo.Item">
+    insert into a_item (item_id, item_name, item_price, 
+      order_id)
+    values (#{itemId,jdbcType=CHAR}, #{itemName,jdbcType=CHAR}, #{itemPrice,jdbcType=DOUBLE}, 
+      #{orderId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smates.app.pojo.Item">
+    insert into a_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="itemPrice != null">
+        item_price,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=CHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    <set>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        item_price = #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=CHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    set item_name = #{itemName,jdbcType=CHAR},
+      item_price = #{itemPrice,jdbcType=DOUBLE},
+      order_id = #{orderId,jdbcType=CHAR}
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.smates.app.pojo.Item">
+    <id column="item_id" jdbcType="CHAR" property="itemId" />
+    <result column="item_name" jdbcType="CHAR" property="itemName" />
+    <result column="item_price" jdbcType="DOUBLE" property="itemPrice" />
+    <result column="order_id" jdbcType="CHAR" property="orderId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_id, item_name, item_price, order_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.smates.app.pojo.Item">
+    insert into a_item (item_id, item_name, item_price, 
+      order_id)
+    values (#{itemId,jdbcType=CHAR}, #{itemName,jdbcType=CHAR}, #{itemPrice,jdbcType=DOUBLE}, 
+      #{orderId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smates.app.pojo.Item">
+    insert into a_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="itemPrice != null">
+        item_price,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=CHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    <set>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        item_price = #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=CHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    set item_name = #{itemName,jdbcType=CHAR},
+      item_price = #{itemPrice,jdbcType=DOUBLE},
+      order_id = #{orderId,jdbcType=CHAR}
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.smates.app.pojo.Item">
+    <id column="item_id" jdbcType="CHAR" property="itemId" />
+    <result column="item_name" jdbcType="CHAR" property="itemName" />
+    <result column="item_price" jdbcType="DOUBLE" property="itemPrice" />
+    <result column="order_id" jdbcType="CHAR" property="orderId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_id, item_name, item_price, order_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.smates.app.pojo.Item">
+    insert into a_item (item_id, item_name, item_price, 
+      order_id)
+    values (#{itemId,jdbcType=CHAR}, #{itemName,jdbcType=CHAR}, #{itemPrice,jdbcType=DOUBLE}, 
+      #{orderId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smates.app.pojo.Item">
+    insert into a_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="itemPrice != null">
+        item_price,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=CHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    <set>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        item_price = #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=CHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    set item_name = #{itemName,jdbcType=CHAR},
+      item_price = #{itemPrice,jdbcType=DOUBLE},
+      order_id = #{orderId,jdbcType=CHAR}
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.smates.app.pojo.Item">
+    <id column="item_id" jdbcType="CHAR" property="itemId" />
+    <result column="item_name" jdbcType="CHAR" property="itemName" />
+    <result column="item_price" jdbcType="DOUBLE" property="itemPrice" />
+    <result column="order_id" jdbcType="CHAR" property="orderId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_id, item_name, item_price, order_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.smates.app.pojo.Item">
+    insert into a_item (item_id, item_name, item_price, 
+      order_id)
+    values (#{itemId,jdbcType=CHAR}, #{itemName,jdbcType=CHAR}, #{itemPrice,jdbcType=DOUBLE}, 
+      #{orderId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smates.app.pojo.Item">
+    insert into a_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="itemPrice != null">
+        item_price,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=CHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    <set>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        item_price = #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=CHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    set item_name = #{itemName,jdbcType=CHAR},
+      item_price = #{itemPrice,jdbcType=DOUBLE},
+      order_id = #{orderId,jdbcType=CHAR}
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.smates.app.pojo.Item">
+    <id column="item_id" jdbcType="CHAR" property="itemId" />
+    <result column="item_name" jdbcType="CHAR" property="itemName" />
+    <result column="item_price" jdbcType="DOUBLE" property="itemPrice" />
+    <result column="order_id" jdbcType="CHAR" property="orderId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_id, item_name, item_price, order_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.smates.app.pojo.Item">
+    insert into a_item (item_id, item_name, item_price, 
+      order_id)
+    values (#{itemId,jdbcType=CHAR}, #{itemName,jdbcType=CHAR}, #{itemPrice,jdbcType=DOUBLE}, 
+      #{orderId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smates.app.pojo.Item">
+    insert into a_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="itemPrice != null">
+        item_price,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=CHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    <set>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        item_price = #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=CHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    set item_name = #{itemName,jdbcType=CHAR},
+      item_price = #{itemPrice,jdbcType=DOUBLE},
+      order_id = #{orderId,jdbcType=CHAR}
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.smates.app.pojo.Item">
+    <id column="item_id" jdbcType="CHAR" property="itemId" />
+    <result column="item_name" jdbcType="CHAR" property="itemName" />
+    <result column="item_price" jdbcType="DOUBLE" property="itemPrice" />
+    <result column="order_id" jdbcType="CHAR" property="orderId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_id, item_name, item_price, order_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.smates.app.pojo.Item">
+    insert into a_item (item_id, item_name, item_price, 
+      order_id)
+    values (#{itemId,jdbcType=CHAR}, #{itemName,jdbcType=CHAR}, #{itemPrice,jdbcType=DOUBLE}, 
+      #{orderId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smates.app.pojo.Item">
+    insert into a_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="itemPrice != null">
+        item_price,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=CHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    <set>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        item_price = #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=CHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    set item_name = #{itemName,jdbcType=CHAR},
+      item_price = #{itemPrice,jdbcType=DOUBLE},
+      order_id = #{orderId,jdbcType=CHAR}
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.smates.app.pojo.Item">
+    <id column="item_id" jdbcType="CHAR" property="itemId" />
+    <result column="item_name" jdbcType="CHAR" property="itemName" />
+    <result column="item_price" jdbcType="DOUBLE" property="itemPrice" />
+    <result column="order_id" jdbcType="CHAR" property="orderId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_id, item_name, item_price, order_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.smates.app.pojo.Item">
+    insert into a_item (item_id, item_name, item_price, 
+      order_id)
+    values (#{itemId,jdbcType=CHAR}, #{itemName,jdbcType=CHAR}, #{itemPrice,jdbcType=DOUBLE}, 
+      #{orderId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smates.app.pojo.Item">
+    insert into a_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="itemPrice != null">
+        item_price,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=CHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    <set>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        item_price = #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=CHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    set item_name = #{itemName,jdbcType=CHAR},
+      item_price = #{itemPrice,jdbcType=DOUBLE},
+      order_id = #{orderId,jdbcType=CHAR}
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <resultMap id="BaseResultMap" type="com.smates.app.pojo.Item">
+    <id column="item_id" jdbcType="CHAR" property="itemId" />
+    <result column="item_name" jdbcType="CHAR" property="itemName" />
+    <result column="item_price" jdbcType="DOUBLE" property="itemPrice" />
+    <result column="order_id" jdbcType="CHAR" property="orderId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    item_id, item_name, item_price, order_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from a_item
+    where item_id = #{itemId,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.smates.app.pojo.Item">
+    insert into a_item (item_id, item_name, item_price, 
+      order_id)
+    values (#{itemId,jdbcType=CHAR}, #{itemName,jdbcType=CHAR}, #{itemPrice,jdbcType=DOUBLE}, 
+      #{orderId,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.smates.app.pojo.Item">
+    insert into a_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        item_id,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="itemPrice != null">
+        item_price,
+      </if>
+      <if test="orderId != null">
+        order_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="itemId != null">
+        #{itemId,jdbcType=CHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    <set>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=CHAR},
+      </if>
+      <if test="itemPrice != null">
+        item_price = #{itemPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=CHAR},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.smates.app.pojo.Item">
+    update a_item
+    set item_name = #{itemName,jdbcType=CHAR},
+      item_price = #{itemPrice,jdbcType=DOUBLE},
+      order_id = #{orderId,jdbcType=CHAR}
+    where item_id = #{itemId,jdbcType=CHAR}
+  </update>
+</mapper>

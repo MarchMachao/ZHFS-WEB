@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.smates.dbc2.mapper.UserDao">
+
+	<resultMap type="com.smates.dbc2.vo.ComboBoxRow" id="ComboBoxRowMap">
+		<id column="id" property="id" />
+		<result column="nickName" property="text" />
+	</resultMap>
+
+	<resultMap id="BaseResultMap" type="user">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="accountNumber" property="accountNumber"
+			jdbcType="CHAR" />
+		<result column="nickName" property="nickName" jdbcType="CHAR" />
+		<result column="password" property="password" jdbcType="CHAR" />
+		<result column="role" property="role" jdbcType="INTEGER" />
+		<result column="createDate" property="createDate" jdbcType="CHAR" />
+		<result column="e_mail" property="eMail" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, accountNumber,nickName, password, role, createDate,
+		e_mail
+	</sql>
+
+	<!-- des: 查找所有用户id和用户昵称 sql: select id,nickName from s_user -->
+	<select id="getUserList" resultMap="ComboBoxRowMap">
+		select id,nickName
+		from s_user
+	</select>
+
+	<!-- des: 根据accountNumber查找user example sql: select * from s_user where 
+		accountNumber = admin -->
+	<select id="selectByAccountNumber" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select *
+		from s_user
+		where accountNumber =
+		#{accountNumber}
+	</select>
+
+	<!-- des: 根据id查user example sql： select * from s_user where id = 8 -->
+	<select id="getUserById" parameterType="int" resultMap="BaseResultMap">
+		select *
+		from s_user
+		where id = #{value}
+	</select>
+
+
+	<!-- des: 获取所有用户名称 example sql： select a.nickname from s_user a -->
+	<select id="getAllUserName" resultType="String">
+		select a.nickname
+		from
+		s_user a
+	</select>
+
+	<!-- des: 获取所有用户 example sql： select * from s_user -->
+	<select id="getUser" resultMap="BaseResultMap">
+		select *
+		from s_user
+	</select>
+
+
+	<!-- des: 像s_user表中插入数据 example sql: insert into s_user (accountNumber,nickName, 
+		password, role, createDate, e_mail) values ("tangshilong","汤士龙",123456,1,2016-07-18,"834848102@qq.com") -->
+	<insert id="insertUser" parameterType="user" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into s_user
+		(accountNumber,nickName, password, role,
+		createDate, e_mail, image)
+		values
+		(#{accountNumber},#{nickName},#{password},#{role},#{createDate},#{eMail},#{image})
+	</insert>
+
+	<!-- des: 根据accountNumber和nickName获取所用用户信息 example sql: select * from s_user 
+		a where a.accountNumber like '%tangshi%' and a.nickName like '%汤%' limit 
+		0,10 -->
+	<select id="getAllUser" resultMap="BaseResultMap"
+		parameterType="com.smates.dbc2.vo.CostumUser">
+		select *
+		from s_user a
+		<where>
+			<if test="accountNumber!=null">
+				a.accountNumber like '%${accountNumber}%'
+			</if>
+			<if test="nickName!=null">
+				and a.nickName like '%${nickName}%'
+			</if>
+		</where>
+		limit #{startCount},#{rows}
+	</select>
+
+	<!-- des: 获取用户数量 example sql： select count(*) from s_user -->
+	<select id="getUserCount" resultType="Int">
+		select count(*)
+		from s_user
+	</select>
+
+
+	<!-- des: 根据accountNumber删除user examp sql： delete from s_user where accountNumber 
+		= 'tangs' -->
+	<delete id="deleteUser" parameterType="String">
+		delete
+		from s_user
+		where
+		accountNumber = #{value}
+	</delete>
+
+	<!-- des: 根据用户id更新用户信息 examp sql： UPDATE s_user SET accountNumber = "xiaohua", 
+		nickName = "小花", PASSWORD = "123456", role = 1, e_mail = "834848102@qq.com" 
+		WHERE id = 8 -->
+	<update id="updateUser" parameterType="user">
+		update s_user
+		<set>
+			<if test="accountNumber!=null">
+				accountNumber = #{accountNumber},
+			</if>
+			<if test="nickName!=null">
+				nickName = #{nickName},
+			</if>
+			<if test="password!=null">
+				password = #{password},
+			</if>
+			<if test="role!=null">
+				role = #{role},
+			</if>
+			<if test="eMail!=null">
+				e_mail = #{eMail},
+			</if>
+			<if test="image!=null">
+				image = #{image},
+			</if>
+		</set>
+		where id=#{id}
+	</update>
+
+</mapper>

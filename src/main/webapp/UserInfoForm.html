@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Basic Tabs - jQuery EasyUI Demo</title>
+<link rel="stylesheet" type="text/css"
+	href="easyUI/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="easyUI/themes/icon.css">
+
+<script type="text/javascript" src="easyUI/jquery.min.js"></script>
+<script type="text/javascript" src="easyUI/jquery.easyui.min.js"></script>
+</head>
+<body>
+	<div style="margin: 20px 0 10px 0;"></div>
+	<div id="user_tab" class="easyui-tabs" style="width: auto;">
+		<div title="信息维护" style="padding: 10px">
+			<div style="float: left;">
+				<form id="userform" method="post" enctype="multipart/form-data">
+					<input type="hidden" id="id" name="id">
+					<table>
+						<tr>
+							<td>用户账号:</td>
+							<td><input class="easyui-textbox" id="accountNumber"
+								data-options="required:true,validType:'isAccountNumber',editable:false"
+								name="accountNumber" style="width: 200px; height: 32px"></td>
+						</tr>
+						<tr>
+							<td>用户昵称:</td>
+							<td><input class="easyui-textbox" id="nickName"
+								data-options="required:true" name="nickName"
+								style="width: 200px; height: 32px"></td>
+						</tr>
+						<tr>
+							<td>用户密码:</td>
+							<td><input type="password" class="easyui-textbox"
+								id="password"
+								data-options="required:true,validType:'isPassword'"
+								name="password" style="width: 200px; height: 32px"></td>
+						</tr>
+						<tr>
+							<td>用户邮箱:</td>
+							<td><input class="easyui-textbox" id="eMail"
+								data-options="required:true,validType:'iseMail'" name="eMail"
+								style="width: 200px; height: 32px"></td>
+						</tr>
+						<tr>
+							<td>用户头像:</td>
+							<td><input type="file" id="image" name="image" style="width: 200px; height: 32px;margin-top:10px;"></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td><input type="submit" class="easyui-linkbutton"
+								value="提交" style="width: 100px; height: 32px;" /></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+			<div style="float: left; margin-left: 30px;">
+				<img id="headicon" src=""
+					style="width: 90px; height: 120px; float: left;" />
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/userinfoform.js"></script>
+	<script type="text/javascript" src="js/validate.js"></script>
+</body>
+</html>
