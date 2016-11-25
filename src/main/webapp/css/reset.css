@@ -1,0 +1,37 @@
+@charset "utf-8";
+html,body{height: 100%; }
+a, body {color: #5f5e5e;}
+a, blockquote, body, button, code, dd, div, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, input, legend, li, ol, p, pre, td, textarea, th, ul {margin: 0;padding: 0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;-ms-box-sizing: border-box;}
+body {background: #fff;font-family: "Microsoft Yahei";}
+h1, h2, h3, h4, h5, h6 {font-weight: 400;font-size: 100%;}
+address, caption, cite, code, dfn, em, strong, th, var,b {font-style: normal;font-weight: 400;}
+a {text-decoration: none;}
+img {border: none;}
+li, ol, ul {list-style: none;}
+input, select, textarea {border: none;border: 0;outline: 0;background-color: transparent;-webkit-appearance: none;}
+button, input, select, textarea {font: 14px Verdana, Helvetica, Arial, sans-serif;}
+table {border-collapse: collapse;}
+html {overflow-y: scroll;}
+a, button, input, select, textarea {-webkit-tap-highlight-color: rgba(255, 255, 255, 0);}
+input::-webkit-inner-spin-button, input::-webkit-outer-spin-button {-webkit-appearance: none !important;margin: 0;}
+button, input[type=submit], input[type=reset], input[type=button] {-webkit-appearance: none;}
+input[type=number] {-moz-appearance: textfield;}
+.clearfix:after, .clearfix:before {content: "";display: block;height: 0;clear: both;visibility: hidden;}
+.pull-left {float: left;}
+.pull-right {float: right;}
+.hide{display: none; }
+@font-face {font-family: "iconfont";
+    src: url('../font/iconfont.eot'); /* IE9*/
+    src: url('../font/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('../font/iconfont.woff') format('woff'), /* chrome, firefox */
+    url('../font/iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+    url('../font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+.iconfont {
+    font-family:"iconfont" !important;
+    font-size:18px;
+    font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
