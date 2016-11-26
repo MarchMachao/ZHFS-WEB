@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>人员管理</title>
+	<link rel="stylesheet" type="text/css" href="easyUI/themes/default/easyui.css">
+	<link rel="stylesheet" type="text/css" href="easyUI/themes/icon.css">
+	<script type="text/javascript" src="easyUI/jquery.min.js"></script>
+	<script type="text/javascript" src="easyUI/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="easyUI/locale/easyui-lang-zh_CN.js"></script>
+</head>
+<body>
+	<div style="margin:20px 0;"></div>
+	
+	<table id="hehehe" class="easyui-datagrid" title="DataGrid Complex Toolbar" style="width:100%;height:250px"
+			data-options="rownumbers:true,singleSelect:true,pagination:true,toolbar:'#tb'">
+		<thead>
+			<tr>
+				<th data-options="field:'tagNum',width:100,align:'center'">标签号</th>
+				<th data-options="field:'name',width:100,align:'center'">姓名</th>
+				<th data-options="field:'age',width:100,align:'center'">年龄</th>
+				<th data-options="field:'sex',width:100,align:'center'">性别</th>
+				<th data-options="field:'maritalStatus',width:100,align:'center'">婚姻状况</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="tb" style="padding:5px;height:auto display: inline;">
+		<div style="margin-bottom:5px">
+			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newTag();">增加</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editTag();">修改</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteTag();">删除</a>
+				<input class="easyui-textbox" id="menuName" name="menuName" style="margin-left: 50px; width: 150px; height: 32px">
+			<a href="#" id="search_btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 40px"></a>
+		</div>
+	</div>
+	<div id="dlg" class="easyui-dialog" style="width:400px"
+            closed="true" buttons="#dlg-buttons">
+        <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
+            <div style="margin-bottom:10px">
+                <label>标签号:</label><input name="tagNum" class="easyui-textbox" required="true" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
+                <label>姓名:</label><input name="name" class="easyui-textbox" required="true" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
+                <label>年龄:</label><input name="age" class="easyui-textbox" required="true" style="width:100%">
+            </div>
+            <div style="margin-bottom:10px">
+                <label>性别:</label>
+                <select name="sex" class="easyui-select" required="true" style="width:100%">
+                	<option value="男">男</option>
+                	<option value="女">女</option>
+                </select>	
+            </div>
+            <div style="margin-bottom:10px">
+                <label>婚姻状况:</label>
+                <select name="maritalStatus" class="easyui-select" required="true" style="width:100%">
+            		<option value="已婚">已婚</option>
+                	<option value="未婚">未婚</option>
+                	<option value="单身">单身</option>
+                </select>
+            </div>
+            
+        </form>
+    </div>
+    <div id="dlg-buttons">
+        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveTag();" style="width:90px">保存</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">取消</a>
+    </div>
+</body>
+<script>
+ var url;
+        function newTag(){
+            $('#dlg').dialog('open').dialog('center').dialog('setTitle','添加');
+            $('#fm').form('clear');
+//          url = '.do';
+        }
+        function editTag(){
+            var row = $('#dg').datagrid('getSelected');
+            if (row){
+                $('#dlg').dialog('open').dialog('center').dialog('setTitle','修改');
+                $('#fm').form('load',row);
+                url = '.do?id='+row.id;
+            }
+        }
+        function saveTag(){
+            $('#fm').form('submit',{
+                url: url,
+                onSubmit: function(){
+                    return $(this).form('validate');
+                },
+                success: function(result){
+                    var result = eval('('+result+')');
+                    if (result.errorMsg){
+                        $.messager.show({
+                            title: 'Error',
+                            msg: result.errorMsg
+                        });
+                    } else {
+                        $('#dlg').dialog('close');        // close the dialog
+                        $('#dg').datagrid('reload');    // reload the user data
+                    }
+                }
+            });
+        }
+        function deleteTag(){
+            var row = $('#dg').datagrid('getSelected');
+            if (row){
+                $.messager.confirm('Confirm','Are you sure you want to destroy this user?',function(r){
+                    if (r){
+                        $.post('.do',
+                        {id:row.id},
+                        function(result){
+                            if (result.success){
+                                $('#dg').datagrid('reload');    // reload the user data
+                            } else {
+                                $.messager.show({    // show error message
+                                    title: 'Error',
+                                    msg: result.errorMsg
+                                });
+                            }
+                        },'json');
+                    }
+                });
+            }
+        }
+</script>
+</html>
