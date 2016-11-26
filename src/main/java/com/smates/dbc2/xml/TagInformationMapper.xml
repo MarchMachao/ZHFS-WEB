@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smates.dbc2.mapper.TagInformationDao">
+<!-- 	通过TagNum查询标签持有人的信息 -->
+	<select id="getAllUsefulTag" resultType="TagInformation">
+		select * from TagInformation
+	</select>
+<!-- 向标签信息表中插入一条数据 -->
+	<insert id="addTagInfoByTagNum" parameterType="TagInformation">
+		insert into TagInformation
+		(TagNum,Name,Age,Sex,MaritalStatus,Usefull)
+		values
+		(#{tagNum},#{name},#{age},#{sex},#{maritalStatus},"true")
+	</insert>
+	
+	<delete id="deleteTagInfoByTagNum" parameterType="Integer">
+		delete
+		from TagInformation
+		where
+		TagNum = #{tagNum}
+	</delete>
+	
+	<update id="updateTagInformation" parameterType="TagInformation">
+		update TagInformation
+		<set>
+			<if test="name!=null">
+				Name = #{name},
+			</if>
+			<if test="age!=null">
+				Age = #{age},
+			</if>
+			<if test="sex!=null">
+				Sex = #{sex},
+			</if>
+			<if test="maritalStatus!=null">
+				MaritalStatus = #{maritalStatus},
+			</if>
+			<if test="useFull!=null">
+				UseFull = #{useFull},
+			</if>
+		</set>
+		where TagNum=#{tagNum}
+	</update>
+	
+</mapper>
