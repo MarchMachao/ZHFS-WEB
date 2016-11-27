@@ -10,15 +10,30 @@ public interface TagInforService {
 	 * 通过标签号获取该标签持有人的信息
 	 * @return
 	 */
-	public List<TagInformation> getAllUsefulTag();
+	public List<TagInformation> getAllUsefulTag(int pageNo, int pageSize);
 	
-	/*
-	 * 向该表中插入一条数据
+	/**
+	 * 向表中插入一条tag数据
+	 * 
+	 * @param tagNum
+	 * @param name
+	 * @param age
+	 * @param sex
+	 * @param maritalStatus
 	 */
 	public void addTagInfoByTagNum(String tagNum, String name, Integer age, String sex, String maritalStatus);
 	
-	/*
-	 * 删除表中的一条数据
+	/**
+	 * 获取数据总数量（用于分页）
+	 * 
+	 * @return
+	 */
+	public int countSum();
+
+	/**
+	 * 删除tag数据bytagNum
+	 * 
+	 * @param tagNum
 	 */
 	public void deleteTagInfoByTagNum(Integer tagNum);
 	

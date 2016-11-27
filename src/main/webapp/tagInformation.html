@@ -12,8 +12,8 @@
 <body>
 	<div style="margin:20px 0;"></div>
 	
-	<table id="hehehe" class="easyui-datagrid" title="DataGrid Complex Toolbar" style="width:100%;height:250px"
-			data-options="rownumbers:true,singleSelect:true,pagination:true,toolbar:'#tb'">
+	<table id="tagTable" class="easyui-datagrid" title="人员管理" style="width:100%;height:250px"
+			data-options="rownumbers:true,singleSelect:true,pagination:true,toolbar:'#tb',url:'getTagByTagNum.do',method:'get'">
 		<thead>
 			<tr>
 				<th data-options="field:'tagNum',width:100,align:'center'">标签号</th>
@@ -24,6 +24,7 @@
 			</tr>
 		</thead>
 	</table>
+	
 	<div id="tb" style="padding:5px;height:auto display: inline;">
 		<div style="margin-bottom:5px">
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newTag();">增加</a>
@@ -33,6 +34,7 @@
 			<a href="#" id="search_btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 40px"></a>
 		</div>
 	</div>
+	
 	<div id="dlg" class="easyui-dialog" style="width:400px"
             closed="true" buttons="#dlg-buttons">
         <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
@@ -47,14 +49,14 @@
             </div>
             <div style="margin-bottom:10px">
                 <label>性别:</label>
-                <select name="sex" class="easyui-select" required="true" style="width:100%">
+                <select name="sex" class="easyui-select" style="width:100%">
                 	<option value="男">男</option>
                 	<option value="女">女</option>
                 </select>	
             </div>
             <div style="margin-bottom:10px">
                 <label>婚姻状况:</label>
-                <select name="maritalStatus" class="easyui-select" required="true" style="width:100%">
+                <select name="maritalStatus" class="easyui-select" style="width:100%">
             		<option value="已婚">已婚</option>
                 	<option value="未婚">未婚</option>
                 	<option value="单身">单身</option>
@@ -69,18 +71,19 @@
     </div>
 </body>
 <script>
- var url;
+ 		var url;
         function newTag(){
             $('#dlg').dialog('open').dialog('center').dialog('setTitle','添加');
             $('#fm').form('clear');
-//          url = '.do';
+         	url = 'addTagInfoByTagNum.do';
         }
+        
         function editTag(){
-            var row = $('#dg').datagrid('getSelected');
+            var row = $('#tagTable').datagrid('getSelected');
             if (row){
                 $('#dlg').dialog('open').dialog('center').dialog('setTitle','修改');
                 $('#fm').form('load',row);
-                url = '.do?id='+row.id;
+//                 url = '.do?id='+row.id;
             }
         }
         function saveTag(){
@@ -97,26 +100,26 @@
                             msg: result.errorMsg
                         });
                     } else {
-                        $('#dlg').dialog('close');        // close the dialog
-                        $('#dg').datagrid('reload');    // reload the user data
+                        $('#dlg').dialog('close');        // 关闭对话框
+                        $('#tagTable').datagrid('reload');    // 重置表格
                     }
                 }
             });
         }
         function deleteTag(){
-            var row = $('#dg').datagrid('getSelected');
+            var row = $('#tagTable').datagrid('getSelected');
             if (row){
-                $.messager.confirm('Confirm','Are you sure you want to destroy this user?',function(r){
+                $.messager.confirm('确认','Are you sure you want to destroy this user?',function(r){
                     if (r){
-                        $.post('.do',
-                        {id:row.id},
+                        $.post('deleteTagInfoByTagNum.do',
+                        {tagNum:row.tagNum},
                         function(result){
                             if (result.success){
-                                $('#dg').datagrid('reload');    // reload the user data
+                                $('#tagTable').datagrid('reload');    // reload the user data
                             } else {
                                 $.messager.show({    // show error message
-                                    title: 'Error',
-                                    msg: result.errorMsg
+                                    title: '错误',
+                                    msg: '删除错误，请刷新后重试！'
                                 });
                             }
                         },'json');

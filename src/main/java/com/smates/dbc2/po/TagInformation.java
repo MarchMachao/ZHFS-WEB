@@ -8,7 +8,7 @@ package com.smates.dbc2.po;
 public class TagInformation {
 	private String tagNum;
 	private String name;
-	private int age;
+	private Integer age;
 	private String sex;
 	private String maritalStatus;
 	private String useFull;
@@ -16,7 +16,7 @@ public class TagInformation {
 	public TagInformation() {
 	}
 	
-	public TagInformation(String tagNum, String name, int age, String sex, String maritalStatus, String useFull) {
+	public TagInformation(String tagNum, String name, Integer age, String sex, String maritalStatus, String useFull) {
 		this.tagNum = tagNum;
 		this.name = name;
 		this.age = age;
@@ -44,7 +44,7 @@ public class TagInformation {
 		return age;
 	}
 
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 

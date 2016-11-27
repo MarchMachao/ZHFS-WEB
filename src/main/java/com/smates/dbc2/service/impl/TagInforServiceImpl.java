@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.smates.dbc2.mapper.TagInformationDao;
 import com.smates.dbc2.po.TagInformation;
 import com.smates.dbc2.service.TagInforService;
+import com.smates.dbc2.vo.Page;
 
 @Service
 public class TagInforServiceImpl implements TagInforService {
@@ -16,8 +17,8 @@ public class TagInforServiceImpl implements TagInforService {
 	private TagInformationDao tagInformationDao;
 
 	@Override
-	public List<TagInformation> getAllUsefulTag() {
-		return tagInformationDao.getAllUsefulTag();
+	public List<TagInformation> getAllUsefulTag(int pageNo, int pageSize) {
+		return tagInformationDao.getAllUsefulTag(new Page(pageNo, pageSize));
 	}
 
 	@Override
@@ -33,6 +34,11 @@ public class TagInforServiceImpl implements TagInforService {
 	@Override
 	public void updateTagInformation(TagInformation tagInfo) {
 		
+	}
+
+	@Override
+	public int countSum() {
+		return tagInformationDao.countSum();
 	}
 
 }

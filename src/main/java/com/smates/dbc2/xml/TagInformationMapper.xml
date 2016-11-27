@@ -3,16 +3,24 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.smates.dbc2.mapper.TagInformationDao">
-<!-- 	通过TagNum查询标签持有人的信息 -->
-	<select id="getAllUsefulTag" resultType="TagInformation">
-		select * from TagInformation
+
+	<!-- 通过TagNum查询标签持有人的信息 -->
+	<select id="getAllUsefulTag" parameterType="Page" resultType="TagInformation">
+		select * from TagInformation order by TagInformation.TagNum
+		limit #{startNum},#{rows}
 	</select>
-<!-- 向标签信息表中插入一条数据 -->
+	
+	<!-- 查询出共多少条数据 -->
+    <select id="countSum" resultType="int">
+        select count(*) from TagInformation
+    </select>
+    
+	<!-- 向标签信息表中插入一条数据 -->
 	<insert id="addTagInfoByTagNum" parameterType="TagInformation">
 		insert into TagInformation
 		(TagNum,Name,Age,Sex,MaritalStatus,Usefull)
 		values
-		(#{tagNum},#{name},#{age},#{sex},#{maritalStatus},"true")
+		(#{tagNum},#{name},#{age},#{sex},#{maritalStatus},#{useFull})
 	</insert>
 	
 	<delete id="deleteTagInfoByTagNum" parameterType="Integer">
