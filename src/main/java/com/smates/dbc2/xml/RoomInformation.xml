@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.smates.dbc2.mapper.RoomInformationDao">
+
+	<!-- 通过TagNum查询标签持有人的信息 -->
+	<select id="getAllUsefulTag" parameterType="Page" resultType="RoomInformation">
+		select * from RoomInformation order by RoomInformation.roomNum
+		limit
+		#{startNum},#{rows}
+	</select>
+
+	<!-- 查询出共多少条数据 -->
+	<select id="countSum" resultType="int">
+		select count(*) from
+		RoomInformation
+	</select>
+
+	<!-- 向标签信息表中插入一条数据 -->
+	<insert id="addRoomInformation" parameterType="RoomInformation">
+		insert into
+		RoomInformation
+		(roomNum,roomName,cpid,wakeupNum)
+		values
+		(#{roomNum},#{roomName},#{cpid},#{wakeupNum})
+	</insert>
+
+	<delete id="deleteRoomInformationById" parameterType="Integer">
+		delete
+		from
+		RoomInformation
+		where
+		roomId = #{roomId}
+	</delete>
+
+	<update id="updateRoomInformation" parameterType="RoomInformation">
+		update RoomInformation
+		<set>
+			<if test="name!=null">
+				roomNum = #{roomNum},
+			</if>
+			<if test="age!=null">
+				roomName = #{roomName},
+			</if>
+			<if test="sex!=null">
+				cpid = #{cpid},
+			</if>
+			<if test="maritalStatus!=null">
+				wakeupNum = #{wakeupNum},
+			</if>
+		</set>
+		where roomId=#{roomId}
+	</update>
+
+</mapper>

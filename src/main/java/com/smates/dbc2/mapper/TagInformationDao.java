@@ -7,7 +7,7 @@ import com.smates.dbc2.vo.Page;
 
 public interface TagInformationDao {
 	
-	/*
+	/**
 	 * 通过标签号获取该标签持有人的信息
 	 * @return
 	 */
@@ -20,7 +20,7 @@ public interface TagInformationDao {
 	 */
 	public int countSum();
 
-	/*
+	/**
 	 * 向该表中插入一条数据
 	 */
 	public void addTagInfoByTagNum(TagInformation tagInfo);
