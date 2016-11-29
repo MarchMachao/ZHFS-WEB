@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>人员管理</title>
+<title>房间管理</title>
 <link rel="stylesheet" type="text/css"
 	href="easyUI/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="easyUI/themes/icon.css">
@@ -13,7 +13,7 @@
 <body>
 	<div style="margin: 20px 0;"></div>
 
-	<table id="tagTable" class="easyui-datagrid" title="房间管理"
+	<table id="roomTable" class="easyui-datagrid" title="房间管理"
 		style="width: 100%; height: 250px"
 		data-options="rownumbers:true,singleSelect:true,pagination:true,toolbar:'#tb',url:'getroomInfoNum.do',method:'get'">
 		<thead>
@@ -30,10 +30,10 @@
 	<div id="tb" style="padding: 5px; height: auto display: inline;">
 		<div style="margin-bottom: 5px">
 			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true"
-				onclick="newTag();">增加</a> <a href="#" class="easyui-linkbutton"
+				onclick="newRoom();">增加</a> <a href="#" class="easyui-linkbutton"
 				iconCls="icon-edit" plain="true" onclick="editTag();">修改</a> <a
 				href="#" class="easyui-linkbutton" iconCls="icon-remove"
-				plain="true" onclick="deleteTag();">删除</a> <input
+				plain="true" onclick="deleteRoom();">删除</a> <input
 				class="easyui-textbox" id="menuName" name="menuName"
 				style="margin-left: 50px; width: 150px; height: 32px"> <a
 				href="#" id="search_btn" class="easyui-linkbutton"
@@ -66,7 +66,7 @@
 	</div>
 	<div id="dlg-buttons">
 		<a href="javascript:void(0)" class="easyui-linkbutton c6"
-			iconCls="icon-ok" onclick="saveTag();" style="width: 90px">保存</a> <a
+			iconCls="icon-ok" onclick="saveRoom();" style="width: 90px">保存</a> <a
 			href="javascript:void(0)" class="easyui-linkbutton"
 			iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')"
 			style="width: 90px">取消</a>
@@ -74,21 +74,21 @@
 </body>
 <script>
 	var url;
-	function newTag() {
+	function newRoom() {
 		$('#dlg').dialog('open').dialog('center').dialog('setTitle', '添加');
 		$('#fm').form('clear');
-		url = 'addTagInfoByTagNum.do';
+		url = 'addRoomInfo.do';
 	}
 
-	function editTag() {
-		var row = $('#tagTable').datagrid('getSelected');
+	function editRoom() {
+		var row = $('#roomTable').datagrid('getSelected');
 		if (row) {
 			$('#dlg').dialog('open').dialog('center').dialog('setTitle', '修改');
 			$('#fm').form('load', row);
-			//                 url = '.do?id='+row.id;
+			                url = 'updRoomInfo.do?roomId='+row.roomId;
 		}
 	}
-	function saveTag() {
+	function saveRoom() {
 		$('#fm').form('submit', {
 			url : url,
 			onSubmit : function() {
@@ -103,22 +103,22 @@
 					});
 				} else {
 					$('#dlg').dialog('close'); // 关闭对话框
-					$('#tagTable').datagrid('reload'); // 重置表格
+					$('#roomTable').datagrid('reload'); // 重置表格
 				}
 			}
 		});
 	}
-	function deleteTag() {
-		var row = $('#tagTable').datagrid('getSelected');
+	function deleteRoom() {
+		var row = $('#roomTable').datagrid('getSelected');
 		if (row) {
 			$.messager.confirm('确认',
 					'Are you sure you want to destroy this user?', function(r) {
 						if (r) {
-							$.post('deleteTagInfoByTagNum.do', {
-								tagNum : row.tagNum
+							$.post('delRoomInfoByRoomId.do', {
+								roomId : row.roomId
 							}, function(result) {
 								if (result.success) {
-									$('#tagTable').datagrid('reload'); // reload the user data
+									$('#roomTable').datagrid('reload'); // reload the user data
 								} else {
 									$.messager.show({ // show error message
 										title : '错误',

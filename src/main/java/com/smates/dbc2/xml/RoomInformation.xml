@@ -5,7 +5,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.smates.dbc2.mapper.RoomInformationDao">
 
 	<!-- 通过TagNum查询标签持有人的信息 -->
-	<select id="getAllUsefulTag" parameterType="Page" resultType="RoomInformation">
+	<select id="getAllUsefulRoom" parameterType="Page" resultType="RoomInformation">
 		select * from RoomInformation order by RoomInformation.roomNum
 		limit
 		#{startNum},#{rows}
@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<!-- 向标签信息表中插入一条数据 -->
-	<insert id="addRoomInformation" parameterType="RoomInformation">
+	<insert id="addRoomInfo" parameterType="RoomInformation">
 		insert into
 		RoomInformation
 		(roomNum,roomName,cpid,wakeupNum)
@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		(#{roomNum},#{roomName},#{cpid},#{wakeupNum})
 	</insert>
 
-	<delete id="deleteRoomInformationById" parameterType="Integer">
+	<delete id="delRoomInfoByRoomId" parameterType="Integer">
 		delete
 		from
 		RoomInformation
@@ -34,19 +34,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		roomId = #{roomId}
 	</delete>
 
-	<update id="updateRoomInformation" parameterType="RoomInformation">
+	<update id="updRoomInfo" parameterType="RoomInformation">
 		update RoomInformation
 		<set>
-			<if test="name!=null">
+			<if test="roomNum!=null">
 				roomNum = #{roomNum},
 			</if>
-			<if test="age!=null">
+			<if test="roomName!=null">
 				roomName = #{roomName},
 			</if>
-			<if test="sex!=null">
+			<if test="cpid!=null">
 				cpid = #{cpid},
 			</if>
-			<if test="maritalStatus!=null">
+			<if test="wakeupNum!=null">
 				wakeupNum = #{wakeupNum},
 			</if>
 		</set>

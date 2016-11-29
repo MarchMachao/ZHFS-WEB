@@ -10,8 +10,8 @@ public class RoomInformation {
 	public RoomInformation() {
 	}
 
-	public RoomInformation(int roomId, String roomNum, String roomName, String cpid, String wakeupNum) {
-		this.roomId = roomId;
+	public RoomInformation(String roomNum, String roomName, String cpid, String wakeupNum) {
+		
 		this.roomNum = roomNum;
 		this.roomName = roomName;
 		this.cpid = cpid;
