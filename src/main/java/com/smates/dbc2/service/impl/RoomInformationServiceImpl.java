@@ -43,7 +43,7 @@ public class RoomInformationServiceImpl implements RoomInformationService {
 	@Override
 	public void updRoomInfo(Integer roomId , String roomNum, String roomName, String cpid, String wakeupNum) {
 		
-		//roomInformationDao.updRoomInfo(roomNum , roomName , cpid , wakeupNum);		
+		roomInformationDao.updRoomInfo(new RoomInformation(roomId, roomNum, roomName, cpid, wakeupNum));
 	}
 
 }

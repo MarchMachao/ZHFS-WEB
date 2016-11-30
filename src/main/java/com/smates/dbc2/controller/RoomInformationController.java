@@ -13,6 +13,7 @@ import com.smates.dbc2.po.RoomInformation;
 import com.smates.dbc2.service.RoomInformationService;
 import com.smates.dbc2.vo.BaseMsg;
 import com.smates.dbc2.vo.DataGrideRow;
+
 /**
  * 
  * @author wrz
@@ -23,6 +24,15 @@ public class RoomInformationController {
 	@Autowired
 	private RoomInformationService roomInformationService;
 
+	/**
+	 * 获取房间信息
+	 * 
+	 * @param page
+	 *            分页：当前页数
+	 * @param rows
+	 *            分页：每页显示行数
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "getroomInfoNum", method = RequestMethod.GET)
 	public DataGrideRow<RoomInformation> getAllUseRoomInfo(@RequestParam(defaultValue = "1") int page, int rows) {
@@ -46,8 +56,8 @@ public class RoomInformationController {
 	}
 	@ResponseBody
 	@RequestMapping(value="updRoomInfo")
-	public BaseMsg updRoomInfo(String roomNum , String roomName , String cpid , String wakeupNum) {
-		//roomInformationService.updRoomInfo(roomNum, roomName, cpid, wakeupNum);
+	public BaseMsg updRoomInfo(Integer roomId, String roomNum, String roomName, String cpid, String wakeupNum) {
+		roomInformationService.updRoomInfo(roomId, roomNum, roomName, cpid, wakeupNum);
 		return new BaseMsg(true,"修改成功");
 	}
 }

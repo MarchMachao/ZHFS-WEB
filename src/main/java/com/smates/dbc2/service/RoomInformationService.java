@@ -48,7 +48,7 @@ public interface RoomInformationService {
 	 * @param cpid
 	 * @param wakeupNum
 	 */
-	public void updRoomInfo(Integer roomId , String roomNum,String roomName , String cpid , String wakeupNum);
+	public void updRoomInfo(Integer roomId, String roomNum, String roomName, String cpid, String wakeupNum);
 
 	
 }

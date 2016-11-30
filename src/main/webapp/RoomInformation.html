@@ -13,8 +13,7 @@
 <body>
 	<div style="margin: 20px 0;"></div>
 
-	<table id="roomTable" class="easyui-datagrid" title="房间管理"
-		style="width: 100%; height: 250px"
+	<table id="roomTable" class="easyui-datagrid" title="房间管理" style="width: 100%; height: 250px"
 		data-options="rownumbers:true,singleSelect:true,pagination:true,toolbar:'#tb',url:'getroomInfoNum.do',method:'get'">
 		<thead>
 			<tr>
@@ -29,47 +28,34 @@
 
 	<div id="tb" style="padding: 5px; height: auto display: inline;">
 		<div style="margin-bottom: 5px">
-			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true"
-				onclick="newRoom();">增加</a> <a href="#" class="easyui-linkbutton"
-				iconCls="icon-edit" plain="true" onclick="editTag();">修改</a> <a
-				href="#" class="easyui-linkbutton" iconCls="icon-remove"
-				plain="true" onclick="deleteRoom();">删除</a> <input
-				class="easyui-textbox" id="menuName" name="menuName"
-				style="margin-left: 50px; width: 150px; height: 32px"> <a
-				href="#" id="search_btn" class="easyui-linkbutton"
-				data-options="iconCls:'icon-search'" style="width: 40px"></a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newRoom();">增加</a> 
+			<a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editRoom();">修改</a> 
+			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="deleteRoom();">删除</a> 
+			<input class="easyui-textbox" id="menuName" name="menuName" style="margin-left: 50px; width: 150px; height: 32px"> 
+			<a href="#" id="search_btn" class="easyui-linkbutton" data-options="iconCls:'icon-search'" style="width: 40px"></a>
 		</div>
 	</div>
 
-	<div id="dlg" class="easyui-dialog" style="width: 400px" closed="true"
-		buttons="#dlg-buttons">
-		<form id="fm" method="post" novalidate
-			style="margin: 0; padding: 20px 50px">
+	<div id="dlg" class="easyui-dialog" style="width: 400px" closed="true" buttons="#dlg-buttons">
+		<form id="fm" method="post" novalidate style="margin: 0; padding: 20px 50px">
 			<div style="margin-bottom: 10px">
-				<label>房间编号:</label><input name="roomNum" class="easyui-textbox"
-					required="true" style="width: 100%">
+				<label>房间编号:</label><input name="roomNum" class="easyui-textbox" required="true" style="width: 100%">
 			</div>
 			<div style="margin-bottom: 10px">
-				<label>房间名字:</label><input name="roomName" class="easyui-textbox"
-					required="true" style="width: 100%">
+				<label>房间名字:</label><input name="roomName" class="easyui-textbox" required="true" style="width: 100%">
 			</div>
 			<div style="margin-bottom: 10px">
-				<label>读写器编号:</label><input name="cpid" class="easyui-textbox"
-					required="true" style="width: 100%">
+				<label>读写器编号:</label><input name="cpid" class="easyui-textbox" required="true" style="width: 100%">
 			</div>
 			<div style="margin-bottom: 10px">
-				<label>激励器编号:</label><input name="wakeupNum" class="easyui-textbox"
-					required="true" style="width: 100%">
+				<label>激励器编号:</label><input name="wakeupNum" class="easyui-textbox" required="true" style="width: 100%">
 			</div>
-
 		</form>
 	</div>
+	
 	<div id="dlg-buttons">
-		<a href="javascript:void(0)" class="easyui-linkbutton c6"
-			iconCls="icon-ok" onclick="saveRoom();" style="width: 90px">保存</a> <a
-			href="javascript:void(0)" class="easyui-linkbutton"
-			iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')"
-			style="width: 90px">取消</a>
+		<a href="javascript:;" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveRoom();" style="width: 90px">保存</a> 
+		<a href="javascript:;" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width: 90px">取消</a>
 	</div>
 </body>
 <script>
@@ -85,7 +71,7 @@
 		if (row) {
 			$('#dlg').dialog('open').dialog('center').dialog('setTitle', '修改');
 			$('#fm').form('load', row);
-			                url = 'updRoomInfo.do?roomId='+row.roomId;
+			url = 'updRoomInfo.do?roomId='+row.roomId;
 		}
 	}
 	function saveRoom() {
@@ -111,8 +97,7 @@
 	function deleteRoom() {
 		var row = $('#roomTable').datagrid('getSelected');
 		if (row) {
-			$.messager.confirm('确认',
-					'Are you sure you want to destroy this user?', function(r) {
+			$.messager.confirm('确认','确定删除？', function(r) {
 						if (r) {
 							$.post('delRoomInfoByRoomId.do', {
 								roomId : row.roomId

@@ -109,7 +109,7 @@
         function deleteTag(){
             var row = $('#tagTable').datagrid('getSelected');
             if (row){
-                $.messager.confirm('确认','Are you sure you want to destroy this user?',function(r){
+                $.messager.confirm('确认','确定删除？?',function(r){
                     if (r){
                         $.post('deleteTagInfoByTagNum.do',
                         {tagNum:row.tagNum},

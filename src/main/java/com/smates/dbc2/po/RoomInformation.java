@@ -1,7 +1,12 @@
 package com.smates.dbc2.po;
 
+/**
+ * 
+ * @author lxq
+ *
+ */
 public class RoomInformation {
-	private int roomId;
+	private Integer roomId;
 	private String roomNum;
 	private String roomName;
 	private String cpid;
@@ -18,11 +23,19 @@ public class RoomInformation {
 		this.wakeupNum = wakeupNum;
 	}
 
+	public RoomInformation(Integer roomId, String roomNum, String roomName, String cpid, String wakeupNum) {
+		this.roomId = roomId;
+		this.roomNum = roomNum;
+		this.roomName = roomName;
+		this.cpid = cpid;
+		this.wakeupNum = wakeupNum;
+	}
+
 	public int getRoomId() {
 		return roomId;
 	}
 
-	public void setRoomId(int roomId) {
+	public void setRoomId(Integer roomId) {
 		this.roomId = roomId;
 	}
 
