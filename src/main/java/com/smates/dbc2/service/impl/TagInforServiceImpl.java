@@ -22,8 +22,8 @@ public class TagInforServiceImpl implements TagInforService {
 	}
 
 	@Override
-	public void addTagInfoByTagNum(String tagNum, String name, Integer age, String sex, String maritalStatus) {
-		tagInformationDao.addTagInfoByTagNum(new TagInformation(tagNum, name, age, sex, maritalStatus, "true"));
+	public void addTagInfoByTagNum(String tagNum,String name, Integer age, String sex, String maritalStatus) {
+		tagInformationDao.addTagInfoByTagNum(new TagInformation(tagNum,name, age, sex, maritalStatus, "true"));
 	}
 
 	@Override
@@ -32,8 +32,8 @@ public class TagInforServiceImpl implements TagInforService {
 	}
 
 	@Override
-	public void updateTagInformation(TagInformation tagInfo) {
-		
+	public void updateTagInformation(String tagNum, String name, Integer age, String sex, String maritalStatus) {
+		tagInformationDao.updateTagInformation(new TagInformation(tagNum, name, age, sex, maritalStatus, "true"));
 	}
 
 	@Override

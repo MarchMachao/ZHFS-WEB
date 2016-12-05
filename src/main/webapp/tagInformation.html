@@ -83,7 +83,7 @@
             if (row){
                 $('#dlg').dialog('open').dialog('center').dialog('setTitle','修改');
                 $('#fm').form('load',row);
-//                 url = '.do?id='+row.id;
+                url = 'updateTagInformation.do?tagNum='+row.tagNum;
             }
         }
         function saveTag(){

@@ -25,13 +25,15 @@ public interface TagInformationDao {
 	 */
 	public void addTagInfoByTagNum(TagInformation tagInfo);
 	
-	/*
-	 * 删除表中的一条数据
+	/**
+	 * 根据标签号删除数据
+	 * @param tagNum
 	 */
 	public void deleteTagInfoByTagNum(Integer tagNum);
 	
-	/*
-	 * 更新表中数据
+	/**
+	 * 更新标签持有人信息
+	 * @param tagInfo
 	 */
 	public void updateTagInformation(TagInformation tagInfo);
 }

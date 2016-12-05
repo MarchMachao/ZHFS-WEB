@@ -6,8 +6,10 @@ import com.smates.dbc2.po.TagInformation;
 
 public interface TagInforService {
 
-	/*
-	 * 通过标签号获取该标签持有人的信息
+	/**
+	 * 获取所有有效标签信息
+	 * @param pageNo
+	 * @param pageSize
 	 * @return
 	 */
 	public List<TagInformation> getAllUsefulTag(int pageNo, int pageSize);
@@ -21,7 +23,7 @@ public interface TagInforService {
 	 * @param sex
 	 * @param maritalStatus
 	 */
-	public void addTagInfoByTagNum(String tagNum, String name, Integer age, String sex, String maritalStatus);
+	public void addTagInfoByTagNum(String tagNum,String name, Integer age, String sex, String maritalStatus);
 	
 	/**
 	 * 获取数据总数量（用于分页）
@@ -37,8 +39,13 @@ public interface TagInforService {
 	 */
 	public void deleteTagInfoByTagNum(Integer tagNum);
 	
-	/*
-	 * 更新表中数据
+	/**
+	 * 更新表中的数据
+	 * @param tagNum
+	 * @param name
+	 * @param age
+	 * @param sex
+	 * @param maritalStatus
 	 */
-	public void updateTagInformation(TagInformation tagInfo);
+	public void updateTagInformation(String tagNum, String name, Integer age, String sex, String maritalStatus);
 }

@@ -30,7 +30,7 @@ public class TagInfoController {
 	@ResponseBody
 	@RequestMapping(value = "addTagInfoByTagNum", method = RequestMethod.POST)
 	public BaseMsg addTagInfoByTagNum(String tagNum, String name, Integer age, String sex, String maritalStatus) {
-		//tagInforService.addTagInfoByTagNum("123", "ss", 80, "nan", "sdsd");
+		
 		tagInforService.addTagInfoByTagNum(tagNum, name, age, sex, maritalStatus);
 		return new BaseMsg(true, "添加成功");
 	}
@@ -40,5 +40,12 @@ public class TagInfoController {
 	public BaseMsg deleteTagInfoByTagNum(Integer tagNum) {
 		tagInforService.deleteTagInfoByTagNum(tagNum);
 		return new BaseMsg(true, "删除成功");
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="updateTagInformation")
+	public BaseMsg updateTagInformation(String tagNum ,String name, Integer age, String sex, String maritalStatus) {
+		tagInforService.updateTagInformation(tagNum,name, age, sex, maritalStatus);
+		return new BaseMsg(true, "更新成功");
 	}
 }
