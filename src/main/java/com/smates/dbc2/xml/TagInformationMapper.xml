@@ -6,13 +6,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 通过TagNum查询标签持有人的信息 -->
 	<select id="getAllUsefulTag" parameterType="Page" resultType="TagInformation">
-		select * from TagInformation order by TagInformation.TagNum
+		select * from TagInformation where TagInformation.Usefull='true' order by TagInformation.TagNum
 		limit #{startNum},#{rows}
 	</select>
 	
 	<!-- 查询出共多少条数据 -->
     <select id="countSum" resultType="int">
-        select count(*) from TagInformation
+        select count(*) from TagInformation where TagInformation.Usefull='true'
     </select>
     
 	<!-- 向标签信息表中插入一条数据 -->

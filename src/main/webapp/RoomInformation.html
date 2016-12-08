@@ -13,7 +13,7 @@
 <body>
 	<div style="margin: 20px 0;"></div>
 
-	<table id="roomTable" class="easyui-datagrid" title="房间管理" style="width: 100%; height: 250px"
+	<table id="roomTable" class="easyui-datagrid" title="房间管理" style="width: 100%; height: 400px"
 		data-options="rownumbers:true,singleSelect:true,pagination:true,toolbar:'#tb',url:'getroomInfoNum.do',method:'get'">
 		<thead>
 			<tr>
@@ -72,6 +72,7 @@
 			$('#dlg').dialog('open').dialog('center').dialog('setTitle', '修改');
 			$('#fm').form('load', row);
 			url = 'updRoomInfo.do?roomId='+row.roomId;
+			$("#tagNum").attr("readonly","readonly");
 		}
 	}
 	function saveRoom() {

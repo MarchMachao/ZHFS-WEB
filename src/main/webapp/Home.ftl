@@ -8,7 +8,7 @@
 			content="控制台管理程序">
 		<meta name="author" content="baijw">
 		<!-- App title -->
-		<title>516资源共享</title>
+		<title>智慧服饰</title>
 		<!-- App CSS -->
 		<link href="css/homestyle.css" rel="stylesheet" type="text/css" />
 	</head>
@@ -24,8 +24,10 @@
 				<!-- LOGO -->
 				<div class="topbar-left">
 					<a	href="http://www.smates.cn"	class="logo"> 
-						<img class="homeIcon" src="images/home.png">
-						<span>Lab516</span>
+						<img class="homeIcon" src="img/logo.png" style="height: 50px; -webkit-border-radius: 20px;
+																						-moz-border-radius: 20px;
+																						border-radius: 20px;">
+						<span><img src="img/logo-word1.png" style="width: 150px;"></span>
 					</a>
 				</div>
 	
@@ -40,16 +42,12 @@
 					</ul>
 	
 					<ul class="nav navbar-nav pull-right">
-						<li class="nav-item dropdown notification-list"><a
-							class="nav-link dropdown-toggle arrow-none waves-effect waves-light nav-user"
-							data-toggle="dropdown"
-							role="button" aria-haspopup="false" aria-expanded="false"> <img
-								src="${image}"
-								alt="user" class="img-circle">
+						<li class="nav-item dropdown notification-list">
+						<a class="nav-link dropdown-toggle arrow-none waves-effect waves-light nav-user"
+							data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="false"> 
+						<img src="img/profile.png" alt="user" class="img-circle">
 							</a>
-							<div
-								class="dropdown-menu dropdown-menu-right dropdown-arrow profile-dropdown "
-								aria-labelledby="Preview">
+							<div class="dropdown-menu dropdown-menu-right dropdown-arrow profile-dropdown " aria-labelledby="Preview">
 								<!-- item-->
 								<div class="dropdown-item noti-title">
 									<h5 class="text-overflow">
@@ -122,7 +120,8 @@
 			</div>
 			<!-- End content-page -->
 	
-			<footer class="footer text-right"> 2016 © 516实验室. </footer>
+			<footer class="footer text-right"> 2016 &copy; 兰州大学先进计算实验室. <span class="pull-right">兰州市第三人民医院老年科特别版</span></footer>
+			
 		</div>
 		<!-- END wrapper -->
 	

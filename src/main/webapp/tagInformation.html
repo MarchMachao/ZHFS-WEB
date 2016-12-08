@@ -12,7 +12,7 @@
 <body>
 	<div style="margin:20px 0;"></div>
 	
-	<table id="tagTable" class="easyui-datagrid" title="人员管理" style="width:100%;height:250px"
+	<table id="tagTable" class="easyui-datagrid" title="人员管理" style="width:100%;height:400px"
 			data-options="rownumbers:true,singleSelect:true,pagination:true,toolbar:'#tb',url:'getTagByTagNum.do',method:'get'">
 		<thead>
 			<tr>
@@ -39,7 +39,7 @@
             closed="true" buttons="#dlg-buttons">
         <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
             <div style="margin-bottom:10px">
-                <label>标签号:</label><input name="tagNum" class="easyui-textbox" required="true" style="width:100%">
+                <label>标签号:</label><input id="tagNum" name="tagNum" class="easyui-textbox" required="true" style="width:100%">
             </div>
             <div style="margin-bottom:10px">
                 <label>姓名:</label><input name="name" class="easyui-textbox" required="true" style="width:100%">
@@ -81,9 +81,11 @@
         function editTag(){
             var row = $('#tagTable').datagrid('getSelected');
             if (row){
+            	$("#tagNum").attr("readonly","readonly");
                 $('#dlg').dialog('open').dialog('center').dialog('setTitle','修改');
                 $('#fm').form('load',row);
                 url = 'updateTagInformation.do?tagNum='+row.tagNum;
+                
             }
         }
         function saveTag(){
