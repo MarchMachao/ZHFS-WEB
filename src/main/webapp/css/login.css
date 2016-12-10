@@ -42,7 +42,7 @@
         #login-form label .iconfont{position: absolute; bottom: 8px; left: 9px;color:#2e648a; opacity: .7; }
         #login-form .input-group{margin-bottom: 25px;  position: relative; }
         .btn-group{text-align: right; margin-top: 40px; position:absolute; bottom: 70px; right:65px;}
-        #login-btn{width: 145px; height: 45px; font-size: 16px; font-weight: 700;  background-color: #2a95d7; outline: none; border: 1px solid rgba(0,0,0,0.5); color: #fff; cursor: pointer;
+        .btn-pro{width: 145px; height: 45px; font-size: 16px; font-weight: 700;  background-color: #2a95d7; outline: none; border: 1px solid rgba(0,0,0,0.5); color: #fff; cursor: pointer;
             -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;
             -webkit-box-shadow:  0 1px 6px 4px rgba(0, 0, 0, 0.07) inset, 0 0 0 3px rgb(254, 254, 254), 0 5px 3px 3px rgb(210, 210, 210);
             -moz-box-shadow:  0 1px 6px 4px rgba(0, 0, 0, 0.07) inset, 0 0 0 3px rgb(254, 254, 254), 0 5px 3px 3px rgb(210, 210, 210);
@@ -53,8 +53,8 @@
             -o-transition: all 0.2s;
             transition: all 0.2s;
         }
-        #login-btn:hover{background-color: #2aa6ec; }
-        #login-btn:active{background-color: #2781bc; margin-top: 2px;
+        .btn-pro:hover{background-color: #2aa6ec; }
+        .btn-pro:active{background-color: #2781bc; margin-top: 2px;
             -webkit-box-shadow: 0 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
             -moz-box-shadow: 0 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
             box-shadow: 0 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
