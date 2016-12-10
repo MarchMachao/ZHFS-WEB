@@ -82,8 +82,9 @@
 						<div id="sidebar-menu">
 							<ul>
 								<#list menulist as item>
-									<li class="has_sub">
-										<a href="javascript:void(0);" class="waves-effect active"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></i> <span> ${item.menuName} </span></a>
+									<li class="has_sub" ;">
+										<a href="javascript:void(0);" class="waves-effect" style="font-size:16px;background-color:#64b0f2; font-family:微软雅黑 ;color:#ffffff !important; border-bottom: 1px solid rgba(24, 137, 234,0.6);">
+										<span class="glyphicon glyphicon-search" aria-hidden="true"></span></i> <span> ${item.menuName} </span></a>
 										<ul class="list-unstyled">
 											<#list item.submenus as record>
 												<li>
