@@ -12,7 +12,7 @@
 		<!-- App CSS -->
 		<link href="css/homestyle.css" rel="stylesheet" type="text/css" />
 	</head>
-	<body class="fixed-left widescreen">
+	<body class="fixed-left widescreen" style="overflow-y: hidden">
 	
 	
 		<!-- Begin page -->
@@ -23,7 +23,7 @@
 	
 				<!-- LOGO -->
 				<div class="topbar-left">
-					<a	href="http://www.smates.cn"	class="logo"> 
+					<a	href="#"	class="logo"> 
 						<img class="homeIcon" src="img/logo.png" style="height: 50px; -webkit-border-radius: 20px;
 																						-moz-border-radius: 20px;
 																						border-radius: 20px;">
@@ -112,7 +112,7 @@
 				<!-- Start content -->
 				<div class="content">
 					<div class="container">
-						<iframe id="content_frame" frameborder="no" ></iframe><!--里面可以定义网页-->
+						<iframe id="content_frame" frameborder="no" src="getAllLocation.do"></iframe><!--里面可以定义网页-->
 					</div>
 					<!-- container -->
 				</div>

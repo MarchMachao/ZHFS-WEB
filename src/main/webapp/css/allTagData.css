@@ -1,0 +1,57 @@
+@charset "utf-8";
+#webcontent{
+	border: 0;
+	width: 98%;
+	margin: 10px;
+	border-radius:10px;
+}
+
+.person_div{
+	font-family: "微软雅黑";
+	background-color:#6ccff7;
+	width: 210px;
+	height: 250px;
+	margin: 10px;
+	float: left;
+	outline: none; border: 1px solid rgba(0,0,0,0.5);
+	-webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px;
+            -webkit-box-shadow:  0 1px 6px 4px rgba(0, 0, 0, 0.07) inset, 0 0 0 3px rgb(254, 254, 254), 2px 5px 3px 4px rgb(210, 210, 210);
+            -moz-box-shadow:  0 1px 6px 4px rgba(0, 0, 0, 0.07) inset, 0 0 0 3px rgb(254, 254, 254), 2px 5px 3px 4px rgb(210, 210, 210);
+            box-shadow: 0 1px 6px 4px rgba(0, 0, 0, 0.07) inset, 0 0 0 3px rgb(254, 254, 254), 2px 5px 3px 4px rgb(210, 210, 210);
+            -webkit-transition: all 0.2s;
+            -moz-transition: all 0.2s;
+            -ms-transition: all 0.2s;
+            -o-transition: all 0.2s;
+            transition: all 0.2s;
+}
+.person_div:hover{background-color: #00bff3; }
+.person_div:active{background-color: #58a2db; margin-top: 2px;
+            -webkit-box-shadow: 0 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+            -moz-box-shadow: 0 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+            box-shadow: 0 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+        }
+
+.head_pic{
+	margin-top: 5px;
+	margin-left: 15px;
+	width: 80px;
+	height: 100px;
+	float: left;
+	border-radius: 10px;
+}
+
+.person_info{
+	margin-left: 10px;
+	margin-top: 15px;
+	float: left;
+	width: 100px;
+	left: 5px;
+}
+
+.other_info{
+	float: left;
+	width: 190px;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+

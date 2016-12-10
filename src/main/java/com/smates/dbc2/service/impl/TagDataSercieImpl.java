@@ -17,7 +17,13 @@ public class TagDataSercieImpl implements TagDataService {
 
 	@Override
 	public List<TagLocationData> getAllLocation() {
-		return tagDataDao.getAllLocation();
+		List<TagLocationData> locationDatas = tagDataDao.getAllLocation();
+		for (int i = 0; i < locationDatas.size(); i++) {
+			if (!locationDatas.get(i).getEnd().equals("未离开")) {
+				locationDatas.get(i).setEnd("不在范围内");// 如果end有数据，说明该标签已经从该房间离开
+			}
+		}
+		return locationDatas;
 	}
 
 }
