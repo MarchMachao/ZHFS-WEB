@@ -16,6 +16,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="roomName" property="roomName" />
 		<result column="end" property="end" />
 		<result column="endDate" property="endDate" />
+		<result column="health" property="health" />
+		<result column="image" property="image" />
 	</resultMap>
 
 <!-- 查询所有标签的定位信息，顺便查出标签基本信息 -->
