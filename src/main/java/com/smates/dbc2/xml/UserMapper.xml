@@ -66,9 +66,9 @@
 		keyProperty="id">
 		insert into s_user
 		(accountNumber,nickName, password, role,
-		createDate, e_mail, image)
+		createDate, e_mail)
 		values
-		(#{accountNumber},#{nickName},#{password},#{role},#{createDate},#{eMail},#{image})
+		(#{accountNumber},#{nickName},#{password},#{role},#{createDate},#{eMail})
 	</insert>
 
 	<!-- des: 根据accountNumber和nickName获取所用用户信息 example sql: select * from s_user 
