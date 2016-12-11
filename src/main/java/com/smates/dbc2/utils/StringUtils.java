@@ -33,6 +33,4 @@ public class StringUtils {
 		return UUID.randomUUID().toString()+"."+fileExtendName[fileExtendName.length-1];
 	}
 	
-	
-
 }

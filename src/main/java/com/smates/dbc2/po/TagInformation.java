@@ -1,8 +1,9 @@
 package com.smates.dbc2.po;
+
 /**
  * 标签数据实体类
  * 
- * @author wrz
+ * @author 刘晓庆
  *
  */
 public class TagInformation {
@@ -12,18 +13,24 @@ public class TagInformation {
 	private String sex;
 	private String maritalStatus;
 	private String useFull;
-	
+	private String image;
+	private String health;
+
 	public TagInformation() {
 	}
-	
-	public TagInformation(String tagNum, String name, Integer age, String sex, String maritalStatus, String useFull) {
+
+	public TagInformation(String tagNum, String name, Integer age, String sex, String maritalStatus, String useFull,
+			String health) {
 		this.tagNum = tagNum;
 		this.name = name;
 		this.age = age;
 		this.sex = sex;
 		this.maritalStatus = maritalStatus;
 		this.useFull = useFull;
+		this.health = health;
+		this.image = "000.png";
 	}
+	
 	public String getTagNum() {
 		return tagNum;
 	}
@@ -72,13 +79,20 @@ public class TagInformation {
 		this.useFull = useFull;
 	}
 
-	
-	
+	public String getImage() {
+		return image;
+	}
 
+	public void setImage(String image) {
+		this.image = image;
+	}
 
-	
+	public String getHealth() {
+		return health;
+	}
 
-	
+	public void setHealth(String health) {
+		this.health = health;
+	}
 
-	
 }

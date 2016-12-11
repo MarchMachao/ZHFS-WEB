@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.smates.dbc2.po.User;
-import com.smates.dbc2.qniu.QniuHelper;
 import com.smates.dbc2.utils.ShiroUtils;
 import com.smates.dbc2.utils.StringUtils;
 import com.smates.dbc2.utils.SysConst;
@@ -121,7 +120,6 @@ public class UserController extends BaseController {
 		user2.setNickName(nickname);
 		user2.setPassword(ShiroUtils.passwdMD5(password));
 		user2.setRole(0);
-
 		userService.createUser(user2);
 
 		modelMap.addAttribute("callback", "create user seccess !");
@@ -220,7 +218,7 @@ public class UserController extends BaseController {
 		String imageName = null;
 		if (!StringUtils.isEmpty(image.getOriginalFilename())) {
 			imageName = StringUtils.formateFileName(image.getOriginalFilename());
-			user.setImage(QniuHelper.formateUserHeadIcon(imageName));
+			user.setImage(qniuHelper.formateUserHeadIcon(imageName));
 		}
 
 		if (id == null) {
@@ -354,7 +352,7 @@ public class UserController extends BaseController {
 		if (!StringUtils.isEmpty(image.getOriginalFilename())) {
 			// 修改头像
 			fileName = StringUtils.formateFileName(image.getOriginalFilename());
-			user.setImage(QniuHelper.formateUserHeadIcon(fileName));
+			user.setImage(qniuHelper.formateUserHeadIcon(fileName));
 		} else {
 			// 不修改头像
 			user.setImage(null);

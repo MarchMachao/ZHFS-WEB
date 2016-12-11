@@ -16,13 +16,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="roomName" property="roomName" />
 		<result column="end" property="end" />
 		<result column="endDate" property="endDate" />
+		<result column="health" property="health" />
+		<result column="image" property="image" />
 	</resultMap>
 
 <!-- 查询所有标签的定位信息，顺便查出标签基本信息 -->
 	<select id="getAllLocation" resultMap="getAllLocationMap">
 		select
 		ti1.tagNum,t03.startDate,t03.start,ti1.Name,ti1.Sex,ti1.Age,ti1.MaritalStatus,t03.roomNum,t03.roomName
-		,t03.end,t03.endDate
+		,t03.end,t03.endDate, ti1.health,ti1.image
 		from TagInformation ti1 left join (select
 		t01.tagNum,t01.startDate,t01.start,t01.end,t01.endDate,ri1.roomNum,ri1.roomName
 		from time t01,

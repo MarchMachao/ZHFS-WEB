@@ -20,12 +20,17 @@ public class TagLocationData {
 	private String roomName;
 	private String end;
 	private String endDate;
+	private String health;
+	private String image;
 
 	public TagLocationData() {
 	}
 
+
 	public TagLocationData(String tagNum, String startDate, String start, String name, String sex, Integer age,
-			String maritalStatus, String roomNum, String roomName, String end, String endDate) {
+			String maritalStatus, String roomNum, String roomName, String end, String endDate, String health,
+			String image) {
+		super();
 		this.tagNum = tagNum;
 		this.startDate = startDate;
 		this.start = start;
@@ -37,6 +42,24 @@ public class TagLocationData {
 		this.roomName = roomName;
 		this.end = end;
 		this.endDate = endDate;
+		this.health = health;
+		this.image = image;
+	}
+
+	public String getHealth() {
+		return health;
+	}
+
+	public void setHealth(String health) {
+		this.health = health;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public String getTagNum() {
