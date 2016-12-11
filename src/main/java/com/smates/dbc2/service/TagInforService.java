@@ -3,7 +3,11 @@ package com.smates.dbc2.service;
 import java.util.List;
 
 import com.smates.dbc2.po.TagInformation;
-
+/**
+ * Service
+ * @author 刘晓庆
+ *
+ */
 public interface TagInforService {
 
 	/**
@@ -17,13 +21,8 @@ public interface TagInforService {
 	/**
 	 * 向表中插入一条tag数据
 	 * 
-	 * @param tagNum
-	 * @param name
-	 * @param age
-	 * @param sex
-	 * @param maritalStatus
 	 */
-	public void addTagInfoByTagNum(String tagNum,String name, Integer age, String sex, String maritalStatus);
+	public void addTagInfoByTagNum(TagInformation tagInfo);
 	
 	/**
 	 * 获取数据总数量（用于分页）
@@ -41,11 +40,6 @@ public interface TagInforService {
 	
 	/**
 	 * 更新表中的数据
-	 * @param tagNum
-	 * @param name
-	 * @param age
-	 * @param sex
-	 * @param maritalStatus
 	 */
-	public void updateTagInformation(String tagNum, String name, Integer age, String sex, String maritalStatus);
+	public void updateTagInformation(TagInformation tagInfo);
 }

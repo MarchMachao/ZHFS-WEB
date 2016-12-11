@@ -18,9 +18,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 向标签信息表中插入一条数据 -->
 	<insert id="addTagInfoByTagNum" parameterType="TagInformation">
 		insert into TagInformation
-		(TagNum,Name,Age,Sex,MaritalStatus,Usefull)
+		(TagNum,Name,Age,Sex,MaritalStatus,Usefull,health,image)
 		values
-		(#{tagNum},#{name},#{age},#{sex},#{maritalStatus},#{useFull})
+		(#{tagNum},#{name},#{age},#{sex},#{maritalStatus},#{useFull},#{health},#{image})
 	</insert>
 	
 	<delete id="deleteTagInfoByTagNum" parameterType="Integer">
@@ -47,6 +47,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 			<if test="useFull!=null">
 				UseFull = #{useFull},
+			</if>
+			<if test="health!=null">
+				health = #{health},
+			</if>
+			<if test="image!=null">
+				image = #{image},
 			</if>
 		</set>
 		where TagNum=#{tagNum}

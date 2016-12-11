@@ -14,9 +14,9 @@ import com.qiniu.util.Auth;
 import com.smates.dbc2.utils.SysConst;
 
 /**
- * 使用七牛云实现对文件存储和删除
+ * 七牛云实现文件的简单上传和存储 账号：liuxq2015@lzu.edu.cn 密码： qing1026
  * 
- * @author baijw12  账号：295188526@qq.com 密码：xiaodong123*
+ * @author 刘晓庆
  *
  */
 @Service
@@ -24,10 +24,10 @@ public class QniuHelper {
 
 	private Logger logger = Logger.getLogger(QniuHelper.class);
 	// 设置好账号的ACCESS_KEY和SECRET_KEY
-	String ACCESS_KEY = "yzklo_VHZsqFwzgyGnXj5igrTR2tCeFI1LCx_Jvf";
-	String SECRET_KEY = "Ht-QNpEuj7W9sx4iUQ-Vm1-DU6WeloNQiK0c58U-";
+	String ACCESS_KEY = "-3tLXkwsEQ9Q0UU3GORKwMliq0NzOWIXOdIOk-d_";
+	String SECRET_KEY = "SSWDULytjBX1lgwi35qyftpCVp7OZtifdWlBh5cw";
 	// 要上传的空间
-	String bucketname = "baijwpic";
+	String bucketname = "liuxiaoqing";
 	// 密钥配置
 	Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
 	// 创建上传对象
@@ -87,12 +87,11 @@ public class QniuHelper {
 	}
 	
 	/**
-	 * 给用户的头像图片加格式,缩放 100px*100px
+	 * 给用户的头像图片加格式,缩放 100px*80px
 	 * @param imageName 图片文件名
 	 * @return
 	 */
-	public static String formateUserHeadIcon(String imageName){
+	public  String formateUserHeadIcon(String imageName){
 		return imageName+SysConst.QNIUYUNSTYLE;
 	}
-
 }
