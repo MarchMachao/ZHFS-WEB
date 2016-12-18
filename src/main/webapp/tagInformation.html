@@ -21,7 +21,6 @@
 				<th data-options="field:'age',width:100,align:'center'">年龄</th>
 				<th data-options="field:'sex',width:100,align:'center'">性别</th>
 				<th data-options="field:'maritalStatus',width:100,align:'center'">婚姻状况</th>
-				<th data-options="field:'health',width:300,align:'center'">身体状况</th>
 			</tr>
 		</thead>
 	</table>
@@ -38,7 +37,7 @@
 	
 	<div id="dlg" class="easyui-dialog" style="width:400px"
             closed="true" buttons="#dlg-buttons">
-        <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px" enctype="multipart/form-data">
+        <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
             <div style="margin-bottom:10px">
                 <label>标签号:</label><input id="tagNum" name="tagNum" class="easyui-textbox" required="true" style="width:100%">
             </div>
@@ -63,18 +62,7 @@
                 	<option value="单身">单身</option>
                 </select>
             </div>
-            <div style="margin-bottom:10px">
-            	<label>身体状况:</label>
-            	<td>
-            		<input type="text" id="health" style="width:100%" name="health"/>
-            	</td>
-            </div>
-            <div style="margin-bottom:10px">
-            	<label>用户头像:</label>
-            	<td>
-            		<input type="file" id="image" style="width:70%" name="image"/>
-            	</td>
-            </div>
+            
         </form>
     </div>
     <div id="dlg-buttons">

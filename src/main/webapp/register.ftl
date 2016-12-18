@@ -49,10 +49,8 @@
                 <input type="password" id="repwd" placeholder="请确认密码"  name="repwd">
             </div>
             <div class="btn-group">
-            	<button class="btn-pro" type="button" onclick="window.location.href='Login.ftl'" id="register-btn" style="margin-left: 40px;">取&nbsp;消</button>
                 <button class="btn-pro" type="submit" id="login-btn">注 册</button>
             </div>
-            <div class="danger-error">${requestScope.callback}</div>
         </form>
         <p id="form-bottom"></p>
     </div>
