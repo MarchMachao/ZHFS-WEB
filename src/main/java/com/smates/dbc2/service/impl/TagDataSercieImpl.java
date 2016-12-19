@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.smates.dbc2.mapper.TagDataDao;
+import com.smates.dbc2.po.DateAndTagnum;
+import com.smates.dbc2.po.PieData;
 import com.smates.dbc2.po.TagLocationData;
 import com.smates.dbc2.service.TagDataService;
 
@@ -29,6 +31,12 @@ public class TagDataSercieImpl implements TagDataService {
 			}
 		}
 		return locationDatas;
+	}
+
+	@Override
+	public List<PieData> getPieData(DateAndTagnum dateAndTagnum) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

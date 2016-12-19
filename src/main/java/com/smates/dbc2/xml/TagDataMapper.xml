@@ -20,6 +20,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="image" property="image" />
 	</resultMap>
 
+	<resultMap type="PieData" id="getPieDataMap">
+		<id column="roomId" property="roomId"/>
+		<result column="roomNum" property="roomNum" />
+		<result column="roomName" property="roomName" />
+		<result column="count(*)" property="count" />
+	</resultMap>
 <!-- 查询所有标签的定位信息，顺便查出标签基本信息 -->
 	<select id="getAllLocation" resultMap="getAllLocationMap">
 		select
@@ -36,4 +42,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		order by ti1.tagNum 
 	</select>
 
+<!-- 查询某天某个标签的数据信息，用于 ！！饼图 ！！ -->
+	<select id="getPieData" parameterType="DateAndTagnum" resultMap="getPieDataMap">
+		select 
+		r1.roomId,r1.roomNum,r1.roomName,count(*)
+		from baseData b1,RoomInformation r1
+		where b1.tagNum=#{tagNum} and b1.startDate=#{date} and b1.cpid != 9999 and 
+		b1.cpid=r1.cpid and b1.wakeupNumber=r1.wakeupNum   
+		group by r1.roomNum
+	</select>
 </mapper>
