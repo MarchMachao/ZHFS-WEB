@@ -35,8 +35,7 @@ public class TagDataSercieImpl implements TagDataService {
 
 	@Override
 	public List<PieData> getPieData(DateAndTagnum dateAndTagnum) {
-		// TODO Auto-generated method stub
-		return null;
+		return tagDataDao.getPieData(dateAndTagnum);
 	}
 
 }

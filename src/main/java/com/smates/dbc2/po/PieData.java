@@ -11,6 +11,9 @@ public class PieData {
 	private int roomId;
 	private String roomNum;
 	private String roomName;
+	/**
+	 * count，计数，每人每天数据库内有1440条数据（每分钟一条），该数据记录了tag的定位和时间信息
+	 */
 	private int count;
 
 	public PieData() {
