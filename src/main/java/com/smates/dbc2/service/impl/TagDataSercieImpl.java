@@ -40,7 +40,7 @@ public class TagDataSercieImpl implements TagDataService {
 		for (int i = 0; i < pieDatas.size(); i++) {
 			cnt += pieDatas.get(i).getCount();
 		}
-		pieDatas.add(new PieData(0, "0", "不在范围内", 1440 - cnt));// 加一条不在范围的数据，方便前台插入数据
+		pieDatas.add(new PieData(0, "0", "其他", 1440 - cnt));// 加一条不在范围的数据，方便前台插入数据
 		return pieDatas;
 	}
 

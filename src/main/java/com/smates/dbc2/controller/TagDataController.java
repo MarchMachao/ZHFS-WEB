@@ -35,9 +35,22 @@ public class TagDataController {
 		return "allTagData.ftl";
 	}
 
+	/**
+	 * 查询某人某天的信息，用于画饼图
+	 * 
+	 * @param date
+	 * @param tagNum
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping("getPieData")
 	public List<PieData> getPieData(String date, String tagNum) {
 		return tagDataService.getPieData(new DateAndTagnum(date, tagNum));
+	}
+
+	@RequestMapping("jumpToOneLocation")
+	public String jumpToOneLocation(String tagNum, Model model) {
+		model.addAttribute("tagNum", tagNum);
+		return "onelocation.ftl";
 	}
 }

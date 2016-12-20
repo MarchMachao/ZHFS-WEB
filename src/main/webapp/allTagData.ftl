@@ -5,6 +5,7 @@
 		<title>智慧服饰</title>
 		<link rel="stylesheet" href="css/allTagData.css "/>
 		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"/>
+		<script src="bootstrap/js/jquery.min.js"></script>
 	</head>
 	<body class="wrapper" style="padding:20px 20px;">
 		<#list tagLocationData as item>
@@ -16,12 +17,18 @@
 					<strong>年龄:</strong>${item.age}<br />
 					<strong>科室:</strong>老年科<br />
 				</div>
-				<img class="head_pic" src="img/pic.jpg" />
+				<img class="head_pic" src="http://ohyi4k153.bkt.clouddn.com/${item.image}" />
 				<div class="other_info">
 					<strong>当前位置:</strong>${item.roomName}<br /><br />
-					<strong>身体状况:</strong>急性上呼吸道感染 慢性阻塞性肺疾病 慢性心源性心脏病<br />
+					<strong>身体状况:</strong>${item.health}<br />
 				</div>
 			</div>
 		</#list>
 	</body>
+	<script>
+		$('.person_div').on("click",function(){
+			var tagNum=$(this).find("span").html();
+			window.location.href='jumpToOneLocation.do?tagNum='+tagNum;
+		})
+	</script>
 </html>
