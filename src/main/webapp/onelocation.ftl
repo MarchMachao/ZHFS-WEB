@@ -13,8 +13,8 @@
 		<div class="form-group">
 			<input class="laydate-icon form-control" type="text" name="laydate" id="laydate"/>
 		</div>
-		<div class="home-chart" id="room-chart" style="height: 500px; width: 50%;float: left;"></div>
-		<div class="home-chart" id="room-chart2" style="height: 500px; width: 50%;float: left;"></div>
+		<div class="home-chart" id="room-chart" style="height: auto; width: 50%;float: left;"></div>
+		<div class="home-chart" id="room-chart2" style="height: auto; width: 50%;float: left;"></div>
 	</body>
 	<script src="bootstrap/js/jquery.min.js"></script>
 	<script src="js/echarts-all.js"></script>

@@ -12,6 +12,11 @@
 		<!-- App CSS -->
 		<link href="css/homestyle.css" rel="stylesheet" type="text/css" />
 	</head>
+	<style>
+		.footer {
+		    padding: 5px 15px 5px;
+		}
+	</style>
 	<body class="fixed-left widescreen" style="overflow-y: hidden">
 	
 	
