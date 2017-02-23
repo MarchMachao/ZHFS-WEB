@@ -26,6 +26,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result column="roomName" property="roomName" />
 		<result column="count(*)" property="count" />
 	</resultMap>
+	
+	<resultMap type="TrailData" id="getTrailDataMap">
+		<id column="tagNum" property="tagNum" />
+		<result column="startDate" property="startDate" />
+		<result column="start" property="start" />
+		<result column="endDate" property="endDate" />
+		<result column="end" property="end" />
+		<result column="roomNum" property="roomNum" />
+		<result column="roomName" property="roomName" />
+		<result column="sub" property="sub" />
+	</resultMap>
+	
 <!-- 查询所有标签的定位信息，顺便查出标签基本信息 -->
 	<select id="getAllLocation" resultMap="getAllLocationMap">
 		select
@@ -50,5 +62,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where b1.tagNum=#{tagNum} and b1.startDate=#{date} and b1.cpid != 9999 and 
 		b1.cpid=r1.cpid and b1.wakeupNumber=r1.wakeupNum   
 		group by r1.roomNum
+	</select>
+	
+<!-- 	查询某标签某天的行为轨迹 
+example sql: select t1.tagNum,t1.startDate,t1.start,t1.endDate,t1.end,r1.roomNum,r1.roomName, 
+			timestampdiff(SECOND,CONCAT(t1.startDate,' ',t1.start),CONCAT(t1.endDate,' ',t1.end)) sub
+		from time t1,RoomInformation r1 where t1.tagNum = 82027159
+		and startDate = 20160816  
+		and t1.cpid=r1.cpid 
+		and t1.wakeupNum=r1.wakeupNum -->
+	<select id="getTrailByDateAndTagnum" parameterType="DateAndTagnum" resultMap="getTrailDataMap">
+		select t1.tagNum,t1.startDate,t1.start,t1.endDate,t1.end,r1.roomNum,r1.roomName, timestampdiff(SECOND,CONCAT(t1.startDate,' ',t1.start),CONCAT(t1.endDate,' ',t1.end)) sub
+		from time t1,RoomInformation r1 
+		where t1.tagNum = #{tagNum} and startDate = #{date} and t1.cpid=r1.cpid and t1.wakeupNum=r1.wakeupNum 
 	</select>
 </mapper>
