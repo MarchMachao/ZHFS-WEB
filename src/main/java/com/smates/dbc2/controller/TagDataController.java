@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smates.dbc2.po.DateAndTagnum;
 import com.smates.dbc2.po.PieData;
+import com.smates.dbc2.po.TrailData;
 import com.smates.dbc2.service.TagDataService;
 
 /**
@@ -48,6 +49,26 @@ public class TagDataController {
 		return tagDataService.getPieData(new DateAndTagnum(date, tagNum));
 	}
 
+	/**
+	 * 获取某人某天的活动轨迹
+	 * 
+	 * @param date
+	 * @param tagNum
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("getTrailByDateAndTagnum")
+	public List<TrailData> getTrailByDateAndTagnum(String date, String tagNum) {
+		return tagDataService.getTrailByDateAndTagnum(date, tagNum);
+	}
+
+	/**
+	 * 跳转界面方法 allTagData.ftl->onelocation.ftl
+	 * 
+	 * @param tagNum
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("jumpToOneLocation")
 	public String jumpToOneLocation(String tagNum, Model model) {
 		model.addAttribute("tagNum", tagNum);

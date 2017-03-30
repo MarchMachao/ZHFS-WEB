@@ -5,6 +5,7 @@ import java.util.List;
 import com.smates.dbc2.po.DateAndTagnum;
 import com.smates.dbc2.po.PieData;
 import com.smates.dbc2.po.TagLocationData;
+import com.smates.dbc2.po.TrailData;
 
 /**
  * 标签各种定位数据的Service
@@ -28,4 +29,12 @@ public interface TagDataService {
 	 * @return
 	 */
 	public List<PieData> getPieData(DateAndTagnum dateAndTagnum);
+
+	/**
+	 * 查询某用户某天的运动轨迹
+	 * 
+	 * @param dateAndTagnum
+	 * @return
+	 */
+	public List<TrailData> getTrailByDateAndTagnum(String date, String tagNum);
 }

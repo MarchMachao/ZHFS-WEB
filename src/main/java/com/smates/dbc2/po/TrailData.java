@@ -10,12 +10,13 @@ public class TrailData {
 	private String roomNum;
 	private String roomName;
 	private Integer sub;
+	private String color;
 
 	public TrailData() {
 	}
 
 	public TrailData(String tagNum, String startDate, String start, String endDate, String end, String roomNum,
-			String roomName, Integer sub) {
+			String roomName, Integer sub, String color) {
 		this.tagNum = tagNum;
 		this.startDate = startDate;
 		this.start = start;
@@ -24,6 +25,7 @@ public class TrailData {
 		this.roomNum = roomNum;
 		this.roomName = roomName;
 		this.sub = sub;
+		this.color = color;
 	}
 
 	public String getTagNum() {
@@ -88,6 +90,14 @@ public class TrailData {
 
 	public void setSub(Integer sub) {
 		this.sub = sub;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 }
