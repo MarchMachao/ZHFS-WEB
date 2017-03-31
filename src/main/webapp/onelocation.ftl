@@ -4,23 +4,48 @@
 		<meta charset="UTF-8">
 		<title>Echarts</title>
 		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+		<script src="bootstrap/js/jquery.min.js"></script>
+		<script src="js/echarts-all.js"></script>
+		<script src="laydate/laydate.js"></script>
 	</head>
 	<style>
+		body{padding: 5px 20px;}
 		.form-control{width: 150px;margin: 10px auto;}
+		button{width: 150px;}
 	</style>
 	<body>
 		<input type="hidden" value="${tagNum}" />
 		<div class="form-group">
 			<input class="laydate-icon form-control" type="text" name="laydate" id="laydate"/>
 		</div>
-		<div class="home-chart" id="room-chart" style="height: auto; width: 50%;float: left;"></div>
-		<div class="home-chart" id="room-chart2" style="height: auto; width: 50%;float: left;"></div>
+		<div class="clearfix">
+			<div class="home-chart" id="room-chart" style="height: 300px; width: 50%;float: left;"></div>
+			<div class="home-chart" id="room-chart2" style="height: 300px; width: 50%;float: left;"></div>
+		</div>
+		<div style="margin: 10px auto; text-align: center;">
+			<button type="button" class="btn btn-info" onclick="drawTrail();">显示详情</button>
+		</div>
+		<div class="home-chart" id="room-chart-3" style="height:300px; width: 100%;"></div>
+		<div style="padding: 0 13%;">
+			<table class="table table-hover">
+				<tr>
+					<th>房间号</th>
+					<th>房间名</th>
+					<th>开始时间</th>
+					<th>结束时间</th>
+					<th>持续时间</th>
+				</tr>
+				<tr>
+					<tbody>
+						
+					</tbody>
+				</tr>
+			</table>
+		</div>
 	</body>
-	<script src="bootstrap/js/jquery.min.js"></script>
-	<script src="js/echarts-all.js"></script>
-	<script src="laydate/laydate.js"></script>
+	
 	<script type="text/javascript">
-	drawPie();
+		drawPie();
 // 		获取当天日期
 		function getNowFormatDate() {
 		    var date = new Date();
@@ -48,13 +73,13 @@
 			}
 		});
 		
-		
 		function drawPie(){
 			var myChart = echarts.init(document.getElementById('room-chart'));
 			var myChart2 = echarts.init(document.getElementById('room-chart2'));
 			$.post('getPieData.do',
-					{date:$('#laydate').val(),
-					tagNum:"${tagNum}"
+					{
+						date:$('#laydate').val(),
+						tagNum:"${tagNum}"
 					},
 					function(data){
 						var piedata = [], legenddata = [],bardata = [];
@@ -93,7 +118,6 @@
 			    ]
 			}
 			myChart.setOption(option);
-			
 			
 			var option2 = {
 			    tooltip : {
@@ -149,6 +173,85 @@
 			    }
 			},200)
 			});
+		}
+		
+		function drawTrail(){
+			var myChart3 = echarts.init(document.getElementById('room-chart-3'));
+			
+			
+			$.get('getTrailByDateAndTagnum.do',
+					{
+					date:$('#laydate').val(),
+					tagNum:"${tagNum}"
+					},
+					function(data){
+						var tbroomNum=[],tbstart=[],tbend=[],tbsub=[];
+						var roomName=[],chart3data=[],chart3colorlib=[];
+						for(var i=0;i<data.length;i++){
+							roomName[i]=data[i].roomName;
+							chart3data[i]=data[i].sub;
+							chart3colorlib[i]=data[i].color;
+							
+							tbroomNum[i]=data[i].rooNum;
+							tbstart[i]=data[i].start;
+							tbend[i]=data[i].end;
+							tbsub[i]=parseInt(data[i].sub/60)+"分"+(data[i].sub%60)+"秒"
+						}
+			var option3 = {
+					    title : {
+					        text: '行为轨迹图',
+					        x:'center',
+					        y:'bottom'
+					    },
+					    tooltip : {
+					        trigger: 'item',
+					        formatter: "{b}:{c}秒",
+					        axisPointer : {
+					            type: 'shadow'
+					        }
+					    },
+					    dataZoom: {
+	                        show: true,
+	                        start : 0,
+	                        height: 15
+	                    },
+					    calculable : true,
+					    xAxis : [
+					        {
+					            type : 'category',
+					            data : roomName
+					        }
+					    ],
+					    yAxis : [
+					        {
+					            type : 'value'
+					        }
+					    ],
+					    series : [
+					        {
+					            name:'时间',
+					            type:'bar',
+					            data: chart3data,
+					          	itemStyle: {
+								    normal: {
+								        color: function(params) {
+								            var colorList = chart3colorlib;
+								            return colorList[params.dataIndex]
+								        },
+								        label: {
+								            show: false,
+								            position: 'top',
+								            formatter: '{b}\n{c}'
+								        }
+								    }
+								},
+					        },
+					        
+					    ]
+					};
+			
+			myChart3.setOption(option3);
+					});
 		}
 	</script>
 </html>
