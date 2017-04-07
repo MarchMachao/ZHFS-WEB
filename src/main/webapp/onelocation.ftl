@@ -19,27 +19,25 @@
 			<input class="laydate-icon form-control" type="text" name="laydate" id="laydate"/>
 		</div>
 		<div class="clearfix">
-			<div class="home-chart" id="room-chart" style="height: 300px; width: 50%;float: left;"></div>
-			<div class="home-chart" id="room-chart2" style="height: 300px; width: 50%;float: left;"></div>
+			<div class="home-chart" id="room-chart" style="height: 400px; width: 50%;float: left;"></div>
+			<div class="home-chart" id="room-chart2" style="height: 400px; width: 50%;float: left;"></div>
 		</div>
 		<div style="margin: 10px auto; text-align: center;">
 			<button type="button" class="btn btn-info" onclick="drawTrail();">显示详情</button>
 		</div>
 		<div class="home-chart" id="room-chart-3" style="height:300px; width: 100%;"></div>
 		<div style="padding: 0 13%;">
-			<table class="table table-hover">
-				<tr>
-					<th>房间号</th>
-					<th>房间名</th>
-					<th>开始时间</th>
-					<th>结束时间</th>
-					<th>持续时间</th>
-				</tr>
-				<tr>
-					<tbody>
-						
-					</tbody>
-				</tr>
+			<table id="trailtb" class="table table-hover">
+				<thead>
+					<tr>
+						<th>房间号</th>
+						<th>房间名</th>
+						<th>开始时间</th>
+						<th>结束时间</th>
+						<th>持续时间</th>
+					</tr>
+				<thead>
+				<tbody></tbody>
 			</table>
 		</div>
 	</body>
@@ -69,7 +67,6 @@
 			isclear: false,
 			choose:function(data){
 				drawPie();
-				console.log($('#laydate').val());
 			}
 		});
 		
@@ -120,45 +117,56 @@
 			myChart.setOption(option);
 			
 			var option2 = {
-			    tooltip : {
-			        trigger: 'item',
-			        formatter: "{b}:{c}分钟",
-			        axisPointer : {
-			            type: 'shadow'
-			        }
+			    tooltip: {
+			        trigger: 'item'
 			    },
-			    toolbox: {
-			        show : true,
-			        orient : 'vertical',
-			        y : 'center',
-			        feature : {
-			            restore : {show: true},
-			            saveAsImage : {show: true}
-			        }
-			    },
-			    calculable : true,
-			    xAxis : [
-			        {
-			            type : 'category',
-			            data : legenddata
-			        }
-			    ],
-			    yAxis : [
-			        {
-			            type : 'value',
-			            splitArea : {show : true}
-			        }
-			    ],
 			    grid: {
-			        x2:40
+			        borderWidth:0,
+			        y: 80,
+			        y2: 60
 			    },
-			    series : [
+			    calculable: true,
+			   
+			    xAxis: [
 			        {
-			            name:'时间',
-			            type:'bar',
-			            data:bardata
-			        },
-			        
+			            type: 'category',
+			            show: true,
+			            data: legenddata,
+			            splitLine:false,
+			        }
+			    ],
+			   
+			    yAxis: [
+			        {
+			            type: 'value',
+			            show: false
+			        }
+			    ],
+			    series: [
+			        {
+			            name: '时间',
+			            type: 'bar',
+			            itemStyle: {
+			                normal: {
+			                    color: function(params) {
+			                        // build a color map as your need.
+			                        var colorList = [
+											'#C1232B','#B5C334','#FCCE10','#E87C25','#27727B',
+											'#FE8463','#9BCA63','#FAD860','#F3A43B','#60C0DD',
+											'#D7504B','#C6E579','#F4E001','#F0805A','#26C0C0'
+											];
+			                        return colorList[params.dataIndex]
+			                    },
+			                    label: {
+			                        show: true,
+			                        position: 'top',
+			                        formatter: '{b}\n{c}分钟'
+			                    }
+			                }
+			            },
+			            data: bardata,
+			            
+			        }
 			    ]
 			};
 			myChart2.setOption(option2);
@@ -178,80 +186,137 @@
 		function drawTrail(){
 			var myChart3 = echarts.init(document.getElementById('room-chart-3'));
 			
-			
 			$.get('getTrailByDateAndTagnum.do',
 					{
 					date:$('#laydate').val(),
 					tagNum:"${tagNum}"
 					},
 					function(data){
-						var tbroomNum=[],tbstart=[],tbend=[],tbsub=[];
+// 						var tbroomNum=[],tbstart=[],tbend=[],tbsub=[];
 						var roomName=[],chart3data=[],chart3colorlib=[];
+						
 						for(var i=0;i<data.length;i++){
 							roomName[i]=data[i].roomName;
-							chart3data[i]=data[i].sub;
+							
+							if(data[i].sub==null){
+								chart3data[i]=0;
+							}else{
+								chart3data[i]=data[i].sub;
+							}
+							
 							chart3colorlib[i]=data[i].color;
 							
-							tbroomNum[i]=data[i].rooNum;
-							tbstart[i]=data[i].start;
-							tbend[i]=data[i].end;
-							tbsub[i]=parseInt(data[i].sub/60)+"分"+(data[i].sub%60)+"秒"
+							
+// 							tbroomNum[i]=data[i].roomNum;
+// 							tbstart[i]=data[i].start;
+// 							tbend[i]=data[i].end;
+							
+// 							if(data[i].end=="未离开"){
+// 								tbsub[i]="未离开";
+// 							}else{
+// 								tbsub[i]=parseInt(data[i].sub/60)+"分"+(data[i].sub%60)+"秒";
+// 							}
 						}
-			var option3 = {
-					    title : {
-					        text: '行为轨迹图',
-					        x:'center',
-					        y:'bottom'
-					    },
-					    tooltip : {
-					        trigger: 'item',
-					        formatter: "{b}:{c}秒",
-					        axisPointer : {
-					            type: 'shadow'
-					        }
-					    },
-					    dataZoom: {
-	                        show: true,
-	                        start : 0,
-	                        height: 15
-	                    },
-					    calculable : true,
-					    xAxis : [
-					        {
-					            type : 'category',
-					            data : roomName
-					        }
-					    ],
-					    yAxis : [
-					        {
-					            type : 'value'
-					        }
-					    ],
-					    series : [
-					        {
-					            name:'时间',
-					            type:'bar',
-					            data: chart3data,
-					          	itemStyle: {
-								    normal: {
-								        color: function(params) {
-								            var colorList = chart3colorlib;
-								            return colorList[params.dataIndex]
-								        },
-								        label: {
-								            show: false,
-								            position: 'top',
-								            formatter: '{b}\n{c}'
-								        }
-								    }
-								},
-					        },
-					        
-					    ]
-					};
+						
+						//绘制表格
+						$("#trailtb tbody").empty();
+						
+						for(var i in data){
+							if(data[i].end=="未离开"){
+								var newTr = '<tr>' + '<td>'
+										+ data[i].roomNum
+										+ '</td>' + '<td>'
+										+ data[i].roomName
+										+ '</td>' + '<td>'
+										+ data[i].start
+										+ '</td>' + '<td>'
+										+ data[i].end
+										+ '</td>' + '<td>'
+										+ "未离开"
+										+ '</td>' + '</tr>';
+							}
+							else{
+						
+								var newTr = '<tr>' + '<td>'
+										+ data[i].roomNum
+										+ '</td>' + '<td>'
+										+ data[i].roomName
+										+ '</td>' + '<td>'
+										+ data[i].start
+										+ '</td>' + '<td>'
+										+ data[i].end
+										+ '</td>' + '<td>'
+										+ parseInt((data[i].sub)/60)+"分"+(data[i].sub)%60+"秒"
+										+ '</td>' + '</tr>';
+							}
+							$("#trailtb tbody").append(newTr);
+						}
+						
+						//绘制图表
+						var option3 = {
+						    title : {
+						        text: '行为轨迹图',
+						        x:'center',
+						        y:'top'
+						    },
+						    tooltip : {
+						        trigger: 'item',
+						        formatter: "{b}:{c}秒",
+						        axisPointer : {
+						            type: 'shadow'
+						        }
+						    },
+						    dataZoom: {
+		                        show: true,
+		                        start : 0,
+		                        height: 15
+		                    },
+						    calculable : false,
+						    xAxis : [
+						        {
+						            type : 'category',
+						            data : roomName
+						        }
+						    ],
+						    yAxis : [
+						        {
+						            type : 'value'
+						        }
+						    ],
+						    series : [
+						        {
+						            name:'时间',
+						            type:'bar',
+						            data: chart3data,
+						          	itemStyle: {
+									    normal: {
+									        color: function(params) {
+									            var colorList = chart3colorlib;
+									            return colorList[params.dataIndex]
+									        },
+									        label: {
+									            show: false,
+									            position: 'top',
+									            formatter: '{b}\n{c}'
+									        }
+									    }
+									},
+						        },
+						        
+						    ]
+						};
 			
 			myChart3.setOption(option3);
-					});
+			
+			
+			});
 		}
+		setTimeout(function (){
+		    window.onresize = function () {
+		    	myChart.resize();
+			    myChart2.resize();
+		        myChart3.resize();
+		    }
+		},200)
 	</script>
 </html>
