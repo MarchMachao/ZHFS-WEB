@@ -75,12 +75,12 @@ public class TagInfoController {
 		return new BaseMsg(true, "删除成功");
 	}
 
-	// @ResponseBody
-	// @RequestMapping(value = "updateTagInformation")
-	// public BaseMsg updateTagInformation(String tagNum, String name, Integer
-	// age, String sex, String maritalStatus) {
-	// tagInforService.updateTagInformation(tagNum, name, age, sex,
-	// maritalStatus);
-	// return new BaseMsg(true, "更新成功");
-	// }
+	@ResponseBody
+	@RequestMapping(value = "updateTagInformation")
+	public BaseMsg updateTagInformation(String tagNum, String name, Integer age, String sex, String maritalStatus) {
+		TagInformation tagInformation = new TagInformation(tagNum, name, age, sex, maritalStatus, null, null);
+		tagInformation.setImage(null);
+		tagInforService.updateTagInformation(tagInformation);
+		return new BaseMsg(true, "更新成功");
+	}
 }
