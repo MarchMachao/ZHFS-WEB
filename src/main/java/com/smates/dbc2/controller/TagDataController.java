@@ -14,7 +14,7 @@ import com.smates.dbc2.po.TrailData;
 import com.smates.dbc2.service.TagDataService;
 
 /**
- * 11关于标签数据的controller，包括定位、轨迹等
+ * 关于标签数据的controller，包括定位、轨迹等
  * 
  * @author March
  *
