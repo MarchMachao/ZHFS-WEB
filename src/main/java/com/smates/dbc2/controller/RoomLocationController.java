@@ -10,7 +10,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smates.dbc2.po.RoomLocation;
 import com.smates.dbc2.service.RoomLocationService;
-
+/**
+ * 
+ * @author 刘晓庆
+ *
+ */
 @Controller
 public class RoomLocationController {
 	private Logger logger = Logger.getLogger(RoomLocationController.class);

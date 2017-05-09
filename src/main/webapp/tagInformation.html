@@ -37,7 +37,7 @@
 	
 	<div id="dlg" class="easyui-dialog" style="width:400px"
             closed="true" buttons="#dlg-buttons">
-        <form id="fm" method="post" novalidate style="margin:0;padding:20px 50px">
+        <form id="fm" method="post"enctype="multipart/form-data" novalidate style="margin:0;padding:20px 50px">
             <div style="margin-bottom:10px">
                 <label>标签号:</label><input id="tagNum" name="tagNum" class="easyui-textbox" required="true" style="width:100%">
             </div>
@@ -61,6 +61,10 @@
                 	<option value="未婚">未婚</option>
                 	<option value="单身">单身</option>
                 </select>
+            </div>
+            <div style="margin-bottom:10px">
+            	<label>上传图片:</label>
+            	<input type="file" id="image" name="image" style="width: 200px; height: 32px; margin-top: 10px;" />
             </div>
             
         </form>

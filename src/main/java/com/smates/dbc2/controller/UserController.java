@@ -21,7 +21,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.smates.dbc2.po.User;
 import com.smates.dbc2.utils.ShiroUtils;
 import com.smates.dbc2.utils.StringUtils;
-import com.smates.dbc2.utils.SysConst;
 import com.smates.dbc2.utils.ValidaterUtil;
 import com.smates.dbc2.vo.BaseMsg;
 import com.smates.dbc2.vo.ComboBoxRow;
@@ -30,7 +29,7 @@ import com.smates.dbc2.vo.DataGrideRow;
 /**
  * 用户相关的请求
  * 
- * @author tangShilong
+ * @author 刘晓庆
  *
  */
 @Controller
