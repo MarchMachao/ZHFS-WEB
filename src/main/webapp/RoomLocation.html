@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>人员分布图</title>
+    <meta name="author" content="SIRMly">
+    <meta name="renderer" content="webkit">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+          name="viewport">
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="0" http-equiv="expires">
+    <meta content="telephone=no, address=no" name="format-detection">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="css/style.css">
+    
+    <script type="text/javascript" src="easyUI/jquery.min.js"></script>
+	<script type="text/javascript" src="easyUI/jquery.easyui.min.js"></script>
+</head>
+
+<body style="overflow: hidden;">
+<div id="box">
+    <img src="img/flagR.png" id="star" title="有n个人">
+    <img src="img/flagR.png" id="star1" title="有n个人">
+    <img src="img/flagR.png" id="star2" title="有n个人">
+    <img src="img/flagR.png" id="star3" title="有n个人">
+    <div id="reference">
+    	<img src="img/colorR.png" id="colorR" >
+    	 <!--<span id="font">0个人</span>-->
+    	<img src="img/colorO.png" id="colorO">
+    	 <!--<span id="font1">1个人</span>-->
+    	<img src="img/colorY.png" id="colorY">
+    	 <!--<span id="font2">2个人</span>-->
+    	<img src="img/colorB.png" id="colorB">
+    	 <!--<span id="font3">3个人</span>-->
+    	<img src="img/colorG.png" id="colorG">
+         <!--<span id="font4">4个人</span>-->
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+	$.get("getRoomLocation.do",
+		  function(data){
+		   for (var i = 0; i < data.length; i++) {
+			   console.log(data[i]);
+			   if(data[i].roomName == "实验区域1"){
+				   $star = document.getElementById("star");
+				   $star.title = "有"+ data[i].roomNum + "个人";
+				   switch(data[i].roomNum){
+				   case 0:
+					   break;
+				   case 1:
+					   $star.src="img/flagO.png";
+					   break;
+				   case 2:
+					   $star.src="img/flagY.png";
+					   break;
+				   case 3:
+					   $star.src="img/flagB.png";
+					   break;
+				   default:
+					   $star.src="img/flagG.png";
+					   break;
+				   }
+			   }
+			   else if(data[i].roomName == "实验区域2"){
+				   $star1 = document.getElementById("star1");
+				   $star1.title = "有"+ data[i].roomNum + "个人";
+				   switch(data[i].roomNum){
+				   case 0:
+					   break;
+				   case 1:
+					   $star1.src="img/flagO.png";
+					   break;
+				   case 2:
+					   $star1.src="img/flagY.png";
+					   break;
+				   case 3:
+					   $star1.src="img/flagB.png";
+					   break;
+				   default:
+					   $star1.src="img/flagG.png";
+					   break;
+				   }
+			   }
+			   else if(data[i].roomName == "实验区域3"){
+				   $star2 = document.getElementById("star2");
+				   $star2.title = "有"+ data[i].roomNum + "个人";
+				   switch(data[i].roomNum){
+				   case 0:
+					   break;
+				   case 1:
+					   $star2.src="img/flagO.png";
+					   break;
+				   case 2:
+					   $star2.src="img/flagY.png";
+					   break;
+				   case 3:
+					   $star2.src="img/flagB.png";
+					   break;
+				   default:
+					   $star2.src="img/flagG.png";
+					   break;
+				   }
+			   }
+			   else if(data[i].roomName == "实验区域4"){
+				   $star3 = document.getElementById("star3");
+				   $star3.title = "有"+ data[i].roomNum + "个人";
+				   switch(data[i].roomNum){
+				   case 0:
+					   break;
+				   case 1:
+					   $star3.src="img/flagO.png";
+					   break;
+				   case 2:
+					   $star3.src="img/flagY.png";
+					   break;
+				   case 3:
+					   $star3.src="img/flagB.png";
+					   break;
+				   default:
+					   $star3.src="img/flagG.png";
+					   break;
+				   }
+			   }
+			}
+		  }
+	)
+</script>
+</html>
