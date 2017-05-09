@@ -22,13 +22,13 @@
                 <label for="username">账号
                     <i class="iconfont">&#xe601;</i>
                 </label>
-                <input type="text" id="username" placeholder="请输入账号" value="admin" name="accountNumber">
+                <input type="text" id="username" placeholder="请输入账号" value="" name="accountNumber">
             </div>
             <div class="input-group">
                 <label for="password">密码
                     <i class="iconfont">&#xe602;</i>
                 </label>
-                <input type="password" id="password" placeholder="请输入密码" value="123456" name="userpwd">
+                <input type="password" id="password" placeholder="请输入密码" value="" name="userpwd">
             </div>
             <#if callback?has_content>
 				<div class="danger-error">账号或密码错误</div>
