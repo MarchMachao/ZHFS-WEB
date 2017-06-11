@@ -1,18 +1,30 @@
-#dbc2
-###项目介绍
-本项目为一个控制台程序模板,可以对数据库中的内容进行基本的维护
-###项目实现简介
-1. spring做容器
-1. springMVC做MVC控制
-1. shiro实现项目的安全管理,拦截器,角色管理等
-1. mybatis作为orm对数据库进行操作
-1. memcache做缓存管理,加快查询较多的操作,从而提高并发,aop实现
-1. mongo和morphia用来收集用户的行为数据并记录,aop实现
-1. easyUI作为前台框架
-1. 使用七牛云作为文件服务器来存储项目中的图片,文本等文件
-1. log4j做日志输出
-###memcache使用(在service层使用)
-####配置缓存,缓存服务器的ip和端口
+# 智慧服饰
+### 项目介绍
+本项目为一个穿戴式老年人行为健康服务平台Web端软件,该系统为“穿戴式老人行为健康服务平台”提供管理、展示的软件应用，该软件的系统功能定义：
+
+1. 登录功能
+2. 用户基础信息
+3. 房间基本信息
+4. 老年人的房间分布图
+4. 行为数据处理
+5. 综合数据分析和分类
+
+### 项目实现简介
+1. Spring做容器
+2. SpringMVC做MVC控制
+3. Shiro实现项目的安全管理,拦截器,角色管理等
+4. Mybatis作为Orm对数据库进行操作
+5. EasyUI和Bootstrap框架作为前台UI框架
+6. Echart和jQuery图表插件来作为图表工具
+7. 使用七牛云作为文件服务器来存储项目中的图片,文本等文件
+8. log4j做日志输出
+9. 版本控制工具Git
+10. 数据库服务器: Mysql;   
+    HTTP服务器: Apache;  
+    Servlet容器: Tomcat;
+11. 用Ajax作为与服务器交换数据并更新部分网页
+### memcache使用(在service层使用)
+#### 配置缓存,缓存服务器的ip和端口
 ```xml
 <aop:aspectj-autoproxy proxy-target-class="true" />
 <bean class="com.smates.dbc2.memcache.config.MemcacheConfig" id="memcachedConfig">
@@ -33,11 +45,11 @@
     <property name="cacheConfig" ref="memcachedConfig"></property>
 </bean>
 ```
-####读缓存
+#### 读缓存
 先去内存读缓存,若缓存中存在则从缓存中取到直接返回不再访问数据库,若缓存中不存在,则先去数据中读取,读到后在缓存中存放一份,然后返回给用户
-#####主键生成策略
+##### 主键生成策略
 cachePrefix_para_para_para
-#####demo
+##### demo
 ```java
 @Override
 @CacheRead(nameSpace="menu",cachePrefix="getAll")
@@ -50,9 +62,9 @@ public List<Menu> getAllMenu(@CacheKey int pageNo, @CacheKey String menuName, @C
     return menuDao.getAllMenu(costumMenu);
 }
 ```
-####清缓存
+#### 清缓存
 清除掉namespace下对应的缓存空间
-#####demo
+##### demo
 ```java
 @Override
 @CacheClear(nameSpace="menu")
@@ -60,15 +72,15 @@ public void deleteMenuById(String menuId) {
     menuDao.deleteMenuById(menuId);
 }
 ```
-###用户行为记录的使用（controller层使用）
-####mongo数据库配置
+### 用户行为记录的使用（controller层使用）
+#### mongo数据库配置
 ```xml
 db_ip=xxx.xxx.xxx.xxx
 db_port=xxxxx
 db_maper_package=com.smates.dbc2.po.UserLog
 db_dbname=smatefamily
 ```
-####demo @PersonalLog("addMenu")
+#### demo @PersonalLog("addMenu")
 ```java
 @RequestMapping(value = "saveMenu", method = RequestMethod.POST)
 @ResponseBody
@@ -86,8 +98,8 @@ public BaseMsg addMenu(String menuId, String menuName, String menuUrl, String pa
     
 }
 ```
-###shiro
-####shiro配置
+### shiro
+#### shiro配置
 ```xml
 <!-- 配置缓存管理器 -->
 <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
@@ -118,13 +130,13 @@ public BaseMsg addMenu(String menuId, String menuName, String menuUrl, String pa
     </property>
 </bean>
 ```
-####项目目前权限说明
+#### 项目目前权限说明
 |权限值|权限名|
 |----|----|
 |0|普通用户|
 |1|管理员|
-###七牛云文件服务器
-####配置(pom.xml)
+### 七牛云文件服务器
+#### 配置(pom.xml)
 ```xml
 <!-- 七牛云文件存储 -->
 <dependency>
@@ -150,15 +162,15 @@ public BaseMsg addMenu(String menuId, String menuName, String menuUrl, String pa
     <version>1.3.2</version>
 </dependency>
 ```
-####demo
-#####前台html
+#### demo
+##### 前台html
 ```html
 <form action="qniu.do" method="post" enctype="multipart/form-data">
     <input type="file" name="image"/>
     <input type="submit" />
 </form>
 ```
-#####上传图片
+##### 上传图片
 ```java
 @RequestMapping(value = "admin/saveUser", method = RequestMethod.POST)
 @ResponseBody
@@ -168,7 +180,7 @@ public BaseMsg createUser(MultipartFile image) {
     }
 }
 ```
-#####删除图片
+##### 删除图片
 ```java
 @RequestMapping(value = "admin/saveUser", method = RequestMethod.POST)
 @ResponseBody
@@ -178,42 +190,3 @@ public BaseMsg createUser(MultipartFile image) {
     }
 }
 ```
-###资源共享平台
-####功能模块
-模块一：寻找资源（只开放查找功能）
-模块二：我的资源（增删改查）
-####数据表机构
-+ 数据库公共字段：
-|列名|属性|说明|
-|------|-------|------|
-|id|vchar(40)|主键（资源id）|
-|type|int（5）|类别|
-|name|vchar(50)|资源名称|
-|content|text|资源内容|
-|describe|text|资源描述|
-|owner|vchar(50)|资源所有人|
-|createTime|date|资源创建时间|
-
-+ 学习资源：
-|列名|属性|说明|
-|------|-------|------|
-|url|vchar(100)|附件地址|
-
-+ 游戏资源（新表）：
-|列名|属性|说明|
-|------|-------|------|
-|id|vchar(40)|资源id|
-|userId|text|拥有使用权限的用户|
-
-+ vip账号：
-无新字段
-
-####菜单结构
-一级菜单：资源共享
-二级菜单：学习资源，游戏账号,视频网站VIP，我的资源
-####权限说明
-学习资源，游戏账号,视频网站VIP （查询）
-我的资源                       （增删改查）
-####分工
-学习资源     游戏资源    负责人：汤士龙           
-vip账号     我的资源    负责人：白江伟
