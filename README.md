@@ -1,5 +1,5 @@
-# 智慧服饰
-### 项目介绍
+# 智慧服饰管理系统
+## 项目介绍
 本项目为一个穿戴式老年人行为健康服务平台Web端软件,该系统为“穿戴式老人行为健康服务平台”提供管理、展示的软件应用，该软件的系统功能定义：
 
 1. 登录功能
@@ -9,97 +9,22 @@
 4. 行为数据处理
 5. 综合数据分析和分类
 
-### 项目实现简介
+## 项目实现简介
 1. Spring做容器
 2. SpringMVC做MVC控制
 3. Shiro实现项目的安全管理,拦截器,角色管理等
 4. Mybatis作为Orm对数据库进行操作
 5. EasyUI和Bootstrap框架作为前台UI框架
-6. Echart和jQuery图表插件来作为图表工具
+6. Echarts和jQuery图表插件来作为图表工具
 7. 使用七牛云作为文件服务器来存储项目中的图片,文本等文件
 8. log4j做日志输出
-9. 版本控制工具Git
-10. 数据库服务器: Mysql;   
+9. 版本控制工具Git (http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/zh_cn/index.html)
+10. 数据库服务器: Mysql, Eclipse;   
     HTTP服务器: Apache;  
     Servlet容器: Tomcat;
 11. 用Ajax作为与服务器交换数据并更新部分网页
-### memcache使用(在service层使用)
-#### 配置缓存,缓存服务器的ip和端口
-```xml
-<aop:aspectj-autoproxy proxy-target-class="true" />
-<bean class="com.smates.dbc2.memcache.config.MemcacheConfig" id="memcachedConfig">
-    <property name="ips">
-        <list>
-            <value>xxx.xxx.xxx.xxx</value>
-        </list>
-    </property>
-    <property name="ports">
-        <list>
-            <value>xxxxx</value>
-        </list>
-    </property>
-    <property name="connectionPoolSize" value="10">
-    </property>
-</bean>
-<bean class="com.smates.dbc2.memcache.CacheManager" init-method="init">
-    <property name="cacheConfig" ref="memcachedConfig"></property>
-</bean>
-```
-#### 读缓存
-先去内存读缓存,若缓存中存在则从缓存中取到直接返回不再访问数据库,若缓存中不存在,则先去数据中读取,读到后在缓存中存放一份,然后返回给用户
-##### 主键生成策略
-cachePrefix_para_para_para
-##### demo
-```java
-@Override
-@CacheRead(nameSpace="menu",cachePrefix="getAll")
-public List<Menu> getAllMenu(@CacheKey int pageNo, @CacheKey String menuName, @CacheKey String permition, @CacheKey int pageSize) {
-    CostumMenu costumMenu = new CostumMenu();
-    costumMenu.setStartCount((pageNo-1)*pageSize);
-    costumMenu.setMenuName(menuName);
-    costumMenu.setPermition(permition);
-    costumMenu.setPageSize(pageSize);
-    return menuDao.getAllMenu(costumMenu);
-}
-```
-#### 清缓存
-清除掉namespace下对应的缓存空间
-##### demo
-```java
-@Override
-@CacheClear(nameSpace="menu")
-public void deleteMenuById(String menuId) {
-    menuDao.deleteMenuById(menuId);
-}
-```
-### 用户行为记录的使用（controller层使用）
-#### mongo数据库配置
-```xml
-db_ip=xxx.xxx.xxx.xxx
-db_port=xxxxx
-db_maper_package=com.smates.dbc2.po.UserLog
-db_dbname=smatefamily
-```
-#### demo @PersonalLog("addMenu")
-```java
-@RequestMapping(value = "saveMenu", method = RequestMethod.POST)
-@ResponseBody
-@PersonalLog("addMenu")
-public BaseMsg addMenu(String menuId, String menuName, String menuUrl, String parentId, Integer order, String permition) {
-    if(StringUtils.isEmpty(menuId)){
-        logger.info("添加菜单项");
-        menuService.addMenu(menuName, parentId, menuUrl, order, permition);
-        return new BaseMsg(true, "菜单添加成功");
-    }else{
-        logger.info("更新菜单项");
-        menuService.updateMenu(menuId, menuName, menuUrl, parentId, order, permition);
-        return new BaseMsg(true, "菜单更新成功");
-    }
-    
-}
-```
-### shiro
-#### shiro配置
+## Shiro
+#### Shiro配置
 ```xml
 <!-- 配置缓存管理器 -->
 <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
@@ -135,7 +60,8 @@ public BaseMsg addMenu(String menuId, String menuName, String menuUrl, String pa
 |----|----|
 |0|普通用户|
 |1|管理员|
-### 七牛云文件服务器
+## 七牛云文件服务器
+文档地址：https://developer.qiniu.com/kodo/sdk/1662/java-sdk-6#2
 #### 配置(pom.xml)
 ```xml
 <!-- 七牛云文件存储 -->
@@ -162,7 +88,7 @@ public BaseMsg addMenu(String menuId, String menuName, String menuUrl, String pa
     <version>1.3.2</version>
 </dependency>
 ```
-#### demo
+#### Demo
 ##### 前台html
 ```html
 <form action="qniu.do" method="post" enctype="multipart/form-data">
@@ -190,3 +116,115 @@ public BaseMsg createUser(MultipartFile image) {
     }
 }
 ```
+## 资源共享平台
+### 功能模块
+
+#### 模块一：成员管理（只开放查找功能）
+
+共包括两个模块：人员信息 人员分布
+##### 1. 人员信息
+  功能：展现所有人员的信息（编号，姓名，性别，年龄，科室，当前位置，身体状况，图片），点击名片则显示各个房间的停留分布图，包括饼形图，条形图，网格等。其中，详细的信息目前具体到数据只有一天-------2016-09-16；
+  
+  主要技术：Ajax前端开发，Echarts插件和Bootstrap。
+
+
+
+
+##### 2. 人员分布
+  
+  功能：在房间的架构图中，总共分为4个房间区域，进行分析每个房间的人数。
+  
+  主要技术： HTML、CSS、JavaScript和Ajax进行Web前端开发，后台主要是查询（多表联查）。
+
+
+#### 模块二：系统管理（增删改查）
+主要表格采用EasyUI的UI控件。
+
+##### 数据表机构
++ 用户的数据：
++ 
+|列名|属性|说明|
+|------|-------|------|
+|Id|int(10)|主键（ID号）|
+|TagNum|varchar(40)|标签号|
+|StartDate|date|开始日期|
+|StartTime|varchar(50)|开始时间|
+|RssiToReader|varchar(50)|读写器RSSI值|
+|RssiToAntenna|varchar(40)|天线值|
+|Cpid|varchar(40)|读写器编号|
+|WakeupNumber|varchar(40)|激励器编号|
+
++ 用户时间的数据：
++ 
+|列名|属性|说明|
+|------|-------|------|
+|Id|int(10)|主键（ID号）|
+|TagNum|varchar(40)|标签号|
+|StartDate|date|开始日期|
+|StartTime|varchar(50)|开始时间|
+|EndDate|date|结束日期|
+|EndTime|varchar(50)|结束时间|
+|Rssi|varchar(50)|读写器RSSI|
+|Cpid|varchar(40)|读写器编号|
+|WakeupNumber|varchar(40)|激励器编号|
++ 人员管理：
++ 
+|列名|属性|说明|
+|------|-------|------|
+|TagNum|varchar(40)|主键（标签号）|
+|Name|varchar（50）|姓名|
+|Age|int(5)|年龄|
+|Sex|varchar(20)|性别|
+|MaritalStatus|varchar(40)|婚姻状况|
+|health|varchar(100)|健康状况|
+|image|varchar(100)|用户图片|
+
++ 房间管理：
++ 
+|列名|属性|说明|
+|------|-------|------|
+|RoomId|int(10)|主键（ID号）|
+|RoomNum|varchar（50）|房间编号|
+|RoomName|varchar(50)|房间名字|
+|Cpid|varchar(20)|读写器编号|
+|WakeupNum|varchar(40)|激励器编号|
+
+
++ 菜单管理：
++ 
+|列名|属性|说明|
+|------|-------|------|
+|MenuId|varchar(40)|主键（菜单号）|
+|MenuName|varchar(40)|菜单名称|
+|ParentID|varchar（50）|父菜单|
+|MenuUrl|varchar(50)|菜单连接|
+|OrderNo|int(10)|菜单编号|
+|Permition|varchar(40)|菜单权限|
+
++ 用户管理：
++ 
+|列名|属性|说明|
+|------|-------|------|
+|Id|int(10)|主键（ID号）|
+|AccountNumber|varchar(40)|用户账号|
+|NickName|varchar（50）|用户名称|
+|Password|varchar(50)|用户密码|
+|Role|int(10)|用户权限|
+|CreateDate|varchar(40)|创建时间|
+|E-mail|varchar(40)|用户邮箱|
+
+## 总结
+
+#### 菜单结构
+一级菜单：成员管理 / 系统管理  
+二级菜单：人员信息/ 人员分布/ 人员管理/ 房间管理/ 菜单管理/ 用户管理
+#### 权限说明
+人员信息/ 人员分布                       （查询）  
+人员管理/ 房间管理/ 菜单管理/ 用户管理   （增删改查）
+#### 分工
+
+负责部分 | 负责人
+---|---
+人员分布 ，人员管理，房间管理 | 刘晓庆  
+人员信息 ，菜单管理，用户管理| 马超
+
