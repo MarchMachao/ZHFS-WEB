@@ -19,7 +19,7 @@
 7. 使用七牛云作为文件服务器来存储项目中的图片,文本等文件
 8. log4j做日志输出
 9. 版本控制工具Git (http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/zh_cn/index.html)
-10. 数据库服务器: Mysql, Eclipse;   
+10. 数据库服务器: Mysql;   
     HTTP服务器: Apache;  
     Servlet容器: Tomcat;
 11. 用Ajax作为与服务器交换数据并更新部分网页
@@ -116,8 +116,8 @@ public BaseMsg createUser(MultipartFile image) {
     }
 }
 ```
-## 资源共享平台
-### 功能模块
+
+## 功能模块
 
 #### 模块一：成员管理（只开放查找功能）
 
