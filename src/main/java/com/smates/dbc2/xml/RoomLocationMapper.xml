@@ -11,38 +11,47 @@
 
 	<!-- des: 查找每个房间的用户人数：房间号：tagNum， 姓名：NAME，房间区域：roomName -->
 	<select id="getRoomLocation" resultMap="RoomLocationMap">
-		SELECT t11.tagNum, t11.roomName, COUNT(t11.roomName) AS roomNum FROM (SELECT
-				ti1.tagNum,
-				ti1.NAME,
-				t03.roomName
-			FROM
-				TagInformation ti1
-			LEFT JOIN (
+		SELECT
+			t11.tagNum,
+			t11.roomName,
+			COUNT(t11.roomName) AS roomNum
+		FROM
+			(
 				SELECT
-					t01.tagNum,
-					ri1.roomName
+					ti1.tagNum,
+					ti1. NAME,
+					t03.roomName
 				FROM
-					time t01,
-					(
-						SELECT
-							max(id) AS max_id,
-							tagNum
-						FROM
-							time
-						GROUP BY
-							tagNum
-					) t02,
-					RoomInformation ri1
-				WHERE t01.id = t02.max_id
-				  AND t01.cpid = ri1.cpid
-				  AND t01.wakeupNum = ri1.wakeupNum
+					TagInformation ti1
+				RIGHT JOIN (
+					SELECT
+						t01.tagNum,
+						ri1.roomName
+					FROM
+						time t01,
+						(
+							SELECT
+								max(id) AS max_id,
+								tagNum
+							FROM
+								time
+							GROUP BY
+								tagNum
+						) t02,
+						RoomInformation ri1
+					WHERE
+						t01.id = t02.max_id
+					AND t01.cpid = ri1.cpid
+					AND t01.wakeupNum = ri1.wakeupNum
+					AND t01.`end` = '未离开'
 				) t03 ON ti1.TagNum = t03.tagNum
 				WHERE
 					ti1.Usefull = 'true'
 				ORDER BY
 					ti1.tagNum
-		
-			) t11 GROUP BY t11.roomName
+			) t11
+		GROUP BY
+			t11.roomName
 	</select>
 
 
